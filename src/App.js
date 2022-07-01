@@ -31,6 +31,11 @@ function App() {
           <Route path=":userId" element={<Single />} />
           <Route path="new" element={<New inputs={userInputs} title="Add new User" />} />
         </Route>
+        <Route path="orders">
+          <Route index element={<List />} />
+          <Route path=":orderId" element={<Single />} />
+          <Route path="new" element={<New inputs={userInputs} title="Add new Order" />} />
+        </Route>
         <Route path="products">
           <Route index element={<List />} />
           <Route path=":productId" element={<Single />} />

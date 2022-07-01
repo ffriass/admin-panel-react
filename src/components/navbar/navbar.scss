@@ -6,12 +6,21 @@
   align-items: center;
   font-size: 14px;
   color: #555;
+  background-color: white;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
 
   .wrapper {
     width: 100%;
     padding: 20px;
     display: flex;
     align-items: center;
+    background-color: transparent;
     justify-content: space-between;
 
     .search {
