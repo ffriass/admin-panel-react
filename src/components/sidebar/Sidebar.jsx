@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonIcon from "@mui/icons-material/Person";
+import MenuIcon from '@mui/icons-material/Menu';
 import StoreIcon from "@mui/icons-material/Store";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
@@ -22,7 +23,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" className='sidebar-top-item'>
-          <BarChartIcon className="logo-icon" />
+          <MenuIcon className="logo-icon" />
           <span className="logo-name">BarberHome</span>
         </Link>
       </div>

@@ -6,8 +6,9 @@
     position: fixed;
     height: 100%;
     width: 240px;
+    overflow-y: auto;
 
-    .top{
+    .top {
         height: 60px;
         display: flex;
         align-items: center;
@@ -15,8 +16,11 @@
 
         .sidebar-top-item{
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: start;
 
-            .logo-icon{
+            .logo-icon {
                 font-size: 30px;
                 font-weight: 500;
                 /* color: #fff; */
@@ -24,7 +28,7 @@
                 min-width: 60px;
             }
     
-            .logo-name{
+            .logo-name {
                 font-size: 20px;
                 font-weight: 600;
                 color: #888;
@@ -40,6 +44,7 @@
 
     .sidebar-items{
         padding-left: 10px;
+        padding-right: 10px;
 
         ul{
             list-style: none;
@@ -116,3 +121,34 @@
         }
     }
 }
+
+@media (max-width: 700px) {
+    .sidebar{
+        width: 60px;  
+
+        .logo-name {
+            display: none;
+        }
+
+        .sidebar-item li span {
+            display: none;
+        }
+
+        .bottom{
+            display: block;
+        }
+    }
+    
+}
+
+@media (max-width: 1150px) and (min-width: 699px) {
+    .sidebar{
+        width: 150px;  
+        
+            .logo-name {
+                display: none;
+            }
+        }
+
+    }
+
