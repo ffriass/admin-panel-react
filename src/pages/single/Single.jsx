@@ -1,15 +1,26 @@
-import './single.scss'
+import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
+import { getServices } from "../../services/api/actions";
+import Layout from "../../components/layout/Layout";
 
 const Single = () => {
+  const handleFetch = () => {
+    const response = getServices()
+      .then((result) => {
+        console.log("rssss: ", result);
+        return result;
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  };
+
   return (
-    <div className="single">
-      <Sidebar />
+    <Layout>
       <div className="singleContainer">
-        <Navbar />
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
@@ -40,13 +51,15 @@ const Single = () => {
                   <span className="itemKey">Country:</span>
                   <span className="itemValue">USA</span>
                 </div>
-              </div> 
+              </div>
             </div>
             <div className="itemActionContainer">
-                <div className="payButton">Pay</div>
-                <div className="sendButton">Send Message</div>
-                <div className="availableButton">Make Available</div>
+              <div className="payButton">Pay</div>
+              <div className="sendButton">Send Message</div>
+              <div className="availableButton" onClick={() => handleFetch()}>
+                Make Available
               </div>
+            </div>
           </div>
           <div className="right">
             <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
@@ -54,10 +67,10 @@ const Single = () => {
         </div>
         <div className="bottom">
           <h1 className="title">Last Transactions</h1>
-          <List/>
+          <List />
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

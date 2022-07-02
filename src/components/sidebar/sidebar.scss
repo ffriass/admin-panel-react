@@ -12,12 +12,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        &:hover{
+            background-color: #ece8ff55;
+        }
 
         .sidebar-top-item{
             text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: start;
+            justify-content: start;        
 
             .logo-icon {
                 font-size: 30px;
@@ -59,7 +62,13 @@
             }        
             
             .sidebar-item{
-                text-decoration: none;
+                text-decoration: none;     
+
+                &.active{
+                    li{
+                        background-color: #ece8ff;
+                    }
+                }
 
                 li{
                     display: flex;
@@ -67,13 +76,14 @@
                     padding: 5px;
                     cursor: pointer;
     
-                    &:hover{
-                        background-color: #ece8ff;
+                    &:hover {
+                        background-color: #ece8ff55;
                     }
     
                     .icon{
                         font-size: 20px;
-                        color: #7451f8;
+                        color: black;
+                        // color: #7451f8;
                     }
     
                     span{

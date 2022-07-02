@@ -4,16 +4,15 @@ import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
+import Layout from '../../components/layout/Layout';
 
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
 
   return (
-    <div className="new">
-      <Sidebar />
+    <Layout>      
       <div className="newContainer">
-        <Navbar />
         <div className="top">
           <h1>{title}</h1>
         </div>
@@ -53,7 +52,7 @@ const New = ({ inputs, title }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };     
 
