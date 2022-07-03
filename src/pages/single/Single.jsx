@@ -5,17 +5,15 @@ import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
 import { getServices } from "../../services/api/actions";
 import Layout from "../../components/layout/Layout";
+import useFetch from "../../core/hooks/useFetch";
 
 const Single = () => {
+
+  var [response, loadServices, isLoading] = useFetch();
+
   const handleFetch = () => {
-    const response = getServices()
-      .then((result) => {
-        console.log("rssss: ", result);
-        return result;
-      })
-      .catch((error) => {
-        console.log("Error: ", error);
-      });
+
+    loadServices(getServices());
   };
 
   return (
