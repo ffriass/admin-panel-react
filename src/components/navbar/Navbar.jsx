@@ -12,9 +12,10 @@ import { useContext } from "react";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  console.log("Created Navbar");
 
   return (
-    <div className='navbar'>
+    <div className='navigation-bar'>
     <div className="wrapper">
       <div className="search">
         <input type="text" placeholder='Search ...' />
