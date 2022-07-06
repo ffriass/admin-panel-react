@@ -5,36 +5,19 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { useState, useEffect } from 'react';
 import { getServices } from '../../services/api/actions';
+import useFetch from '../../core/hooks/useFetch';
+import VerticalBarsLoading from '../loading-indicator/Loading'
 
-const DataTable = () => {
+const DataTable = (colums, rows = []) => {
 
   const [data, setData] = useState(userRows);
-  const [rq, setRq] = useState();
-  const [load, setLoad] = useState(true);
-  
-
+  const [response, callback, isloading] = useFetch(getServices())
+  console.log('Datatable ');
   const handleDelete = (id) =>{
     setData(data.filter(item => item.id !== id));
   };
-  const handleFetch = () =>{
-    let response =  getServices();   
-    console.log('Llamda: ', response);
-  };
-  console.log('jjajjaja ');
+  const handleFetch = () =>{  };
   
-
-  /*useEffect( () =>{
-
-    const test = async ()=>{
-      let response =  await getServices();
-      setRq( await response);
-      return await response;
-    }
-    
-    console.log('Response: ', test())
-    console.log('rq: ',rq)
-  },[load]);*/
-
     const actionColumn =[
         {
             field: "action",
@@ -43,7 +26,7 @@ const DataTable = () => {
             renderCell: (params)=> {
                 return(
                     <div className="cellAction">
-                      <Link to="/users/test" className='link'>
+                      <Link to={`/users/${params.row.id}`} className='link'>
                         <div className="viewButton">View</div>
                       </Link>
                         <div className="deleteButton"  onClick={() => handleDelete(params.row.id)}>Delete</div>
@@ -54,7 +37,7 @@ const DataTable = () => {
     }}];
 
   return (
-    <div className="datatable">
+    <div className="datatable">     
       <div className="datatableTitle">       
         <Link to="/users/new" className='link'>
           Add new user
@@ -62,7 +45,7 @@ const DataTable = () => {
         </Link>
       </div>      
         <DataGrid className='datagrid'
-        rows={data}
+        rows={userRows}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]} 

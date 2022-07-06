@@ -1,6 +1,7 @@
-import { getApiOptions } from "../../core/helpers/fetch-options-helper";
+import { getApiOptions,getPostApiOptions, getPutApiOptions,getDeleteApiOptions } from "../../core/helpers/fetch-options-helper";
 import * as actionKeys from './constants'
 
+//GET
 export const getServices = () => {
 
   const options = getApiOptions('service', actionKeys.GET_SERVICES);
@@ -8,4 +9,12 @@ export const getServices = () => {
   return options;
 };
 
-//export const getAllor
+
+//POST
+export const login = (userInfo) => {
+  return getPostApiOptions('account/authenticate', userInfo, actionKeys.AUTHENTICATE);
+}
+
+//PUT
+
+//UPDATE

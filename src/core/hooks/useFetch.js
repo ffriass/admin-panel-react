@@ -7,23 +7,43 @@ const useFetch = (options = null) => {
 
   useEffect(() => {
     if (options) 
-      return setFecth(options);
+      sendRequest(options);
   }, []);
 
-  const setFecth = useCallback((options) => {
+  const sendRequest = useCallback(async (options, dispatch = null) => {
     setIsLoading(true);
-    xFetch(options)
-      .then((result) => {
-        setFetchResult(result);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setFetchResult(error);
-        setIsLoading(false);
+    setFetchResult(null)
+    try {
+      const response = await xFetch(options);
+
+      if(!response.isSuccess){
+        throw new Error(response.error.message || "Something went wrong!");
+      }
+      if(dispatch)
+        dispatch(response.payload)
+        
+        console.log('The response: ', response);
+        setFetchResult(response);
+      /*xFetch(options)
+        .then((result) => {
+          setFetchResult(result);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          setFetchResult(error);
+          setIsLoading(false);
+        });*/
+    } catch (e) {
+      //setIsLoading(false);
+      setFetchResult({
+        error: e,
+        isSuccess: false
       });
+    }
+    setIsLoading(false);
   }, []);
 
-  return [fetchResult, setFecth, isloading];
+  return [fetchResult, sendRequest, isloading];
 };
 
 export default useFetch;

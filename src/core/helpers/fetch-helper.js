@@ -100,7 +100,7 @@ const _internalFetch = (url, options) => {
 
         return {
           payload: result.payload,          
-          isSuccessful: true
+          isSuccess: true
         };
       }
     })
@@ -109,7 +109,7 @@ const _internalFetch = (url, options) => {
       
       return {
         error: error,
-        isSuccessful: false
+        isSuccess: false
       };
     });
 };

@@ -1,6 +1,6 @@
 //import { getUrl, siteNames } from '@eig-builder/core-utils/helpers/url-helper';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pdXN1YXJpb0BiYXJiZXJob21lLmNvbSIsIm5hbWVpZCI6IjQiLCJyb2xlIjoiQ3VzdG9tZXIiLCJOYW1lIjoiRnJhbmtsaW4iLCJMYXN0TmFtZSI6IkZyaWFzIiwiUGhvbmVOdW1iZXIiOiI4MDktODg4LTg4ODgiLCJ1c2VyVmVyaWZpZWQiOiJUcnVlIiwiQmlydGhEYXRlIjoiIiwiaXNUZW1QYXNzd29yZCI6IkZhbHNlIiwiaXNOZXdVc2VyIjoiRmFsc2UiLCJwYXltZW50TWV0aG9kcyI6IkNBU0gsUEFZUEFMIiwibmJmIjoxNjU2ODY5OTAwLCJleHAiOjE2NTY5NTYzMDAsImlhdCI6MTY1Njg2OTkwMCwiaXNzIjoiQmFyYmVySG9tZS5jb20iLCJhdWQiOiJCYXJiZXJIb21lLmNvbSJ9.KHWDJ8JHF54jDVhqU9aV8HG4nGONFPd4e_0spRJShXE';
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHBhbGFjZXRlLmNvbSIsIm5hbWVpZCI6IjEyIiwicm9sZSI6IkVtcGxveWVlIiwiTmFtZSI6IkFkbWluIiwiTGFzdE5hbWUiOiJBZG1pbiIsIlBob25lTnVtYmVyIjoiODQ5LTQwOC0xMjE0IiwidXNlclZlcmlmaWVkIjoiVHJ1ZSIsIkJpcnRoRGF0ZSI6IiIsImlzVGVtUGFzc3dvcmQiOiJGYWxzZSIsImlzTmV3VXNlciI6IkZhbHNlIiwibmJmIjoxNjU3MDc4ODIzLCJleHAiOjE2NTcxNjUyMjMsImlhdCI6MTY1NzA3ODgyMywiaXNzIjoiQmFyYmVySG9tZS5jb20iLCJhdWQiOiJCYXJiZXJIb21lLmNvbSJ9.nOrg56fl3v4nGzDKFhLR4N8WAsz73wT738m8qQiHddk";
 
 export const getApiOptions = (endpoint, key, returnType = 'json', useCache = false) => {
   const options = {
@@ -12,7 +12,7 @@ export const getApiOptions = (endpoint, key, returnType = 'json', useCache = fal
     convertToCamelCase: false,
     fetchOptions :{
       headers : {
-        'AppKey': '96591422-3C4A-4A46-8D81-BB60E392568B',
+        'AppKey': 'cd9f408b-a836-4aae-8f7c-ea68f629f702',
         'Authorization':`Bearer ${token}`      
       }
     }    
@@ -39,8 +39,9 @@ export const getPostApiOptions = (endpoint, data, key, returnType = 'json', useC
     },
     body: JSON.stringify(data),
   };
+  console.log('Post:', obj);
 
-  return options;
+  return obj;
 };
 
 export const getPutApiOptions = (endpoint, data, key, returnType = 'json', useCache = false) => {
