@@ -12,7 +12,7 @@ const DarkModeReducer = (state, action) => {
             dark = !state.darkMode
             break;
         default:
-           break;
+        break;
     }
 
     localStorage.setItem('darkMode', JSON.stringify(dark));

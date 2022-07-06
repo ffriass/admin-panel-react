@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700");
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.container-404 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  left: 6vmin;
+  text-align: center;
+}
+
+.cog-wheel1,
+.cog-wheel2 {
+  transform: scale(0.7);
+}
+
+.cog1,
+.cog2 {
+  width: 40vmin;
+  height: 40vmin;
+  border-radius: 50%;
+  border: 6vmin solid #f3c623;
+  position: relative;
+}
+
+.cog2 {
+  border: 6vmin solid #4f8a8b;
+}
+
+.top-tooth,
+.down-tooth,
+.left-tooth,
+.right-tooth,
+.left-top-tooth,
+.left-down-tooth,
+.right-top-tooth,
+.right-down-tooth {
+  width: 10vmin;
+  height: 10vmin;
+  background-color: #f3c623;
+  position: absolute;
+}
+
+.cog2 .top-tooth,
+.cog2 .down-tooth,
+.cog2 .left-tooth,
+.cog2 .right-tooth,
+.cog2 .left-top-tooth,
+.cog2 .left-down-tooth,
+.cog2 .right-top-tooth,
+.cog2 .right-down-tooth {
+  background-color: #4f8a8b;
+}
+
+.top-tooth {
+  top: -14vmin;
+  left: 9vmin;
+}
+
+.down-tooth {
+  bottom: -14vmin;
+  left: 9vmin;
+}
+
+.left-tooth {
+  left: -14vmin;
+  top: 9vmin;
+}
+
+.right-tooth {
+  right: -14vmin;
+  top: 9vmin;
+}
+
+.left-top-tooth {
+  transform: rotateZ(-45deg);
+  left: -8vmin;
+  top: -8vmin;
+}
+
+.left-down-tooth {
+  transform: rotateZ(45deg);
+  left: -8vmin;
+  top: 25vmin;
+}
+
+.right-top-tooth {
+  transform: rotateZ(45deg);
+  right: -8vmin;
+  top: -8vmin;
+}
+
+.right-down-tooth {
+  transform: rotateZ(-45deg);
+  right: -8vmin;
+  top: 25vmin;
+}
+
+.cog2 {
+  position: relative;
+  left: -10.2vmin;
+  bottom: 10vmin;
+}
+
+.first-four {
+  position: relative;
+  left: 6vmin;
+  font-size: 40vmin;
+  color: #142833;
+}
+
+.second-four {
+  position: relative;
+  right: 18vmin;
+  z-index: -1;
+  font-size: 40vmin;
+  color: #142833;
+}
+
+.wrong-para {
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  bottom: 15vmin;
+  padding: 3vmin 12vmin 3vmin 3vmin;
+  font-weight: 600;
+  color: #092532;
+}
+
+.backButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  position: absolute;
+  display: flex;
+  color: darkblue;
+  align-items: center;
+  bottom: 11vmin;
+  border: 1px dotted rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+}

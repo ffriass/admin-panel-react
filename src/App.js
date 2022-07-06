@@ -10,6 +10,7 @@ import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
+import NotFound from "./pages/404/404";
 
 import { userInputs, productInputs   } from "./formSource";
 import {useContext, useState} from "react";
@@ -41,6 +42,7 @@ function App() {
           <Route path=":productId" element={<Single />} />
           <Route path="new" element={<New inputs={productInputs} title="Add new Product" />} />
         </Route>
+        <Route path='*' element={<NotFound />}/>
       </Route>
     </Routes>
   </BrowserRouter>
