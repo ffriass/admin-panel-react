@@ -34,7 +34,6 @@ const useFetch = (options = null) => {
           setIsLoading(false);
         });*/
     } catch (e) {
-      //setIsLoading(false);
       setFetchResult({
         error: e,
         isSuccess: false

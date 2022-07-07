@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate
 } from "react-router-dom";
 
 import Home from "./pages/home/Home";
@@ -13,17 +14,21 @@ import New from "./pages/new/New";
 import NotFound from "./pages/404/404";
 
 import { userInputs, productInputs   } from "./formSource";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+import AuthContext from "./core/store/auth-context";
 
 function App() {
 
   const {darkMode} = useContext(DarkModeContext);
+  const authContext = useContext(AuthContext);
   
   return (
     <div className={darkMode ? "app dark" : "app"}>
     <BrowserRouter>
     <Routes>
+      {
+      authContext.isLoggedIn ? 
       <Route path="/" >
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
@@ -44,6 +49,13 @@ function App() {
         </Route>
         <Route path='*' element={<NotFound />}/>
       </Route>
+      :
+      <Route>
+        <Route path="login" element={<Login />} />        
+        <Route path='*' element={<Navigate to="/login" />}/>
+      </Route>
+    }
+      
     </Routes>
   </BrowserRouter>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./login.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate, Link } from "react-router-dom";
@@ -7,19 +7,15 @@ import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import useFetch from "../../core/hooks/useFetch";
 import VerticalBarsLoading from "../../components/loading-indicator/Loading";
 import { login } from "../../services/api/actions";
+import AuthContext from "../../core/store/auth-context";
 
 
 const Login = () => {
 
   const [response, authenticate, isLoading] = useFetch();
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [message, setMessage] = useState("");
-
+  const [userInfo, setUserInfo] = useState({email: "", password: ""});
+  const authContext = useContext(AuthContext);
 
   const handleChange = ({ target: { name, value } }) => {
     let temp = { ...userInfo };
@@ -32,15 +28,15 @@ const Login = () => {
     try {
       authenticate(login(userInfo), (result) => {
 
-        console.log("Data: " ,result)
         if(result.isSuccess){
-          navigate('/', {replace: true});
+          const exp = new Date(new Date().getTime() + (60 *60 * 1000)).toISOString();
+          authContext.authenticate(result.data, exp )
+          navigate('/', { replace: true});
         }
       });     
 
     } catch (e) {
       console.log(e);
-      setMessage(e.message);
     }
   };
 

@@ -13,7 +13,7 @@ const Layout = (props) => {
         <Navbar />
         <PageContent>
           <MainContainer>
-          <VerticalBarsLoading loading={true}/>
+          <VerticalBarsLoading loading={false}/>
             {props.children}
           </MainContainer>          
         </PageContent>
