@@ -3,18 +3,18 @@ import "./login.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate, Link } from "react-router-dom";
 //import { Card, Grid, Button, CircularProgress } from "@material-ui/core";
+import { Alert, AlertTitle, Snackbar, Slide } from "@mui/material";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import useFetch from "../../core/hooks/useFetch";
 import VerticalBarsLoading from "../../components/loading-indicator/Loading";
 import { login } from "../../services/api/actions";
 import AuthContext from "../../core/store/auth-context";
 
-
 const Login = () => {
-
   const [response, authenticate, isLoading] = useFetch();
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState({email: "", password: ""});
+  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
+  const [isResetPassword, setResetPassword] = useState(false);
   const authContext = useContext(AuthContext);
 
   const handleChange = ({ target: { name, value } }) => {
@@ -22,19 +22,27 @@ const Login = () => {
     temp[name] = value;
     setUserInfo(temp);
   };
-  console.log("Created login");
-  
+
+  const resetPasswordHandler = () => {
+    setResetPassword(!isResetPassword);
+  };
+
   const handleFormSubmit = (event) => {
     try {
-      authenticate(login(userInfo), (result) => {
-
-        if(result.isSuccess){
-          const exp = new Date(new Date().getTime() + (60 *60 * 1000)).toISOString();
-          authContext.authenticate(result.data, exp )
-          navigate('/', { replace: true});
-        }
-      });     
-
+      if (!isResetPassword) {
+        authenticate(login(userInfo), (result) => {
+          if (result.isSuccess) {
+            const exp = new Date(
+              new Date().getTime() + 60 * 60 * 1000
+            ).toISOString();
+            authContext.authenticate(result.data/*, exp*/);
+            navigate("/", { replace: true });
+          }
+        });
+      } else {
+        //Todo: call endpoint to reset password
+        setResetPassword(!isResetPassword);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -42,55 +50,73 @@ const Login = () => {
 
   return (
     <div className="auth-form-container">
-    <ValidatorForm onSubmit={handleFormSubmit} className="auth-form">
-      <div className="auth-form-content">
-        <h3 className="auth-form-title">Sign In</h3>
-        <div className="form-group mt-3">
-          {/* <label>Email address</label> */}          
-          <TextValidator
-            className="form-control mt-1"
-            variant="outlined"
-            size="small"
-            label="Email"
-            placeholder="user@example.com"
-            onChange={handleChange}
-            type="email"
-            name="email"
-            value={userInfo.email}
-            validators={['required', 'isEmail']}
-            errorMessages={[
-                'this field is required',
-                'email is not valid',
-            ]}/>
-        </div>
-        <div className="form-group mt-3">
-          {/* <label>Password</label> */}
-          <TextValidator
+      <Snackbar
+        open={isResetPassword}
+        autoHideDuration={600}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        transitioncomponent ={<Slide direction="up"/>}
+        //  style={{ position: "absolute", right: 20, top: 20, width: "30%" }}
+      >
+        <Alert onClose={() => {}} severity="error">
+          <AlertTitle>Info</AlertTitle>
+          This is an alert — <strong>check it out!</strong>
+        </Alert>
+      </Snackbar>
+
+      <ValidatorForm onSubmit={handleFormSubmit} className="auth-form">
+        <div className="auth-form-content">
+          <h3 className="auth-form-title">
+            {!isResetPassword ? "Sign In" : "Recover password"}
+          </h3>
+          <div className="form-group mt-3">
+            {/* <label>Email address</label> */}
+            <TextValidator
               className="form-control mt-1"
-              label="Password"
               variant="outlined"
               size="small"
+              label="Email"
+              placeholder="user@example.com"
               onChange={handleChange}
-              name="password"
-              type="password"
-              placeholder="Yor secret password"
-              value={userInfo.password}
-              validators={['required']}
-              errorMessages={['this field is required']}
-          />
+              type="email"
+              name="email"
+              value={userInfo.email}
+              validators={["required", "isEmail"]}
+              errorMessages={["this field is required", "email is not valid"]}
+            />
+          </div>
+          <div className="form-group mt-3">
+            {/* <label>Password</label> */}
+
+            {!isResetPassword && (
+              <TextValidator
+                className="form-control mt-1"
+                label="Password"
+                variant="outlined"
+                size="small"
+                onChange={handleChange}
+                name="password"
+                type="password"
+                placeholder="Yor secret password"
+                value={userInfo.password}
+                validators={["required"]}
+                errorMessages={["this field is required"]}
+              />
+            )}
+          </div>
+          <div className="d-grid gap-2 mt-3">
+            <button type="submit" className="btn btn-primary">
+              {!isResetPassword ? "Login" : "Send request"}
+            </button>
+          </div>
+          <p className="forgot-password text-right mt-2">
+            <a href="#" onClick={resetPasswordHandler}>
+              {!isResetPassword ? "Forgot password?" : "Login"}
+            </a>
+          </p>
         </div>
-        <div className="d-grid gap-2 mt-3">
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </div>
-        <p className="forgot-password text-right mt-2">
-          Forgot <Link to="/login">password?</Link>
-        </p>
-      </div>
-    </ValidatorForm>   
-    <VerticalBarsLoading loading ={isLoading}/>
-  </div>
+      </ValidatorForm>
+      <VerticalBarsLoading loading={isLoading} />
+    </div>
   );
 };
 

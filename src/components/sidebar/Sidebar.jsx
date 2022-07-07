@@ -6,7 +6,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import AuthContext from "../../core/store/auth-context";
-import { menuItems } from "../../core/metadata/menu-items";
+import { menuItems } from "../../services/metadata/menu-items";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);

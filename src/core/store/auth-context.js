@@ -27,11 +27,15 @@ const getStoredTokenInfo = () => {
   if (!token) return null;
 
   const expiration = localStorage.getItem("token-expiration");
-  const remaining = getRemainingTime(expiration);
+  let remaining;
+  
+  if (expiration) {
+    remaining = getRemainingTime(expiration);
 
-  if (remaining <= 60 * 1000) {
-    removeAuthKeys();
-    return null;
+    if (remaining <= 60 * 1000) {
+      removeAuthKeys();
+      return null;
+    }
   }
 
   return {
@@ -56,6 +60,7 @@ export const AuthContextProvider = ({ children }) => {
   const authenticateHandler = (token, expiration) => {
     setToken(token);
     localStorage.setItem("token", token);
+    console.log(token);
 
     if (expiration) {
       logoutTimer = setTimeout(logoutHandler, getRemainingTime(expiration));
