@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import DarkModeReducer from "./darkModeReducer";
+import DarkModeReducer from "./darkMode-reducer";
 
 const INITIAL_STATE = {
     darkMode: JSON.parse(localStorage.getItem('darkMode')) ?? false

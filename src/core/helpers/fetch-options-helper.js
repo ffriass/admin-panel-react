@@ -6,7 +6,7 @@ export const getApiOptions = (endpoint, key, returnType = 'json', useCache = fal
   const options = {
     key,
     //TODO:create method to get the base URL
-    url: `https://localhost:5001/${endpoint}`, //getUrl(siteNames.API_CRM, endpoint),
+    url: `https://app-masterapi-prod.azurewebsites.net/${endpoint}`, //getUrl(siteNames.API_CRM, endpoint),
     returnType,
     useCache,
     convertToCamelCase: false,

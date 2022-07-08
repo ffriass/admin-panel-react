@@ -94,7 +94,11 @@ const _internalFetch = (url, options) => {
 
           console.log('Result 2: ', !errorMessage ? result.response.statusText : errorMessage);
 
-        throw new Error(!errorMessage ? result.response.statusText : errorMessage);
+        //throw new Error(!errorMessage ? result.response.statusText : errorMessage);
+        return {
+          payload: result.payload,          
+          isSuccess: true
+        };
       } else {
         //innerDispatch(result.payload, true, result.response);
 

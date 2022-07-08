@@ -3,12 +3,12 @@ import "./login.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate, Link } from "react-router-dom";
 //import { Card, Grid, Button, CircularProgress } from "@material-ui/core";
-import { Alert, AlertTitle, Snackbar, Slide } from "@mui/material";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import useFetch from "../../core/hooks/useFetch";
 import VerticalBarsLoading from "../../components/loading-indicator/Loading";
 import { login } from "../../services/api/actions";
 import AuthContext from "../../core/store/auth-context";
+import AppContext from "../../core/store/app-context";
 
 const Login = () => {
   const [response, authenticate, isLoading] = useFetch();
@@ -16,6 +16,7 @@ const Login = () => {
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
   const [isResetPassword, setResetPassword] = useState(false);
   const authContext = useContext(AuthContext);
+  const appContext = useContext(AppContext);
 
   const handleChange = ({ target: { name, value } }) => {
     let temp = { ...userInfo };
@@ -35,8 +36,20 @@ const Login = () => {
             const exp = new Date(
               new Date().getTime() + 60 * 60 * 1000
             ).toISOString();
-            authContext.authenticate(result.data/*, exp*/);
+            appContext.showAlert({
+              title: "Good",
+              message: "Has been logged successfully!"
+            });
+            authContext.authenticate(result.data /*, exp*/);
             navigate("/", { replace: true });
+          } else {
+            console.log("jjajaajaj")
+            appContext.showAlert({
+              title: "Invalid",
+              message: "Your email or password are incorrect",
+              // strongMessage: "Try Again!",
+              severity:"error"
+            });
           }
         });
       } else {
@@ -50,19 +63,6 @@ const Login = () => {
 
   return (
     <div className="auth-form-container">
-      <Snackbar
-        open={isResetPassword}
-        autoHideDuration={600}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        transitioncomponent ={<Slide direction="up"/>}
-        //  style={{ position: "absolute", right: 20, top: 20, width: "30%" }}
-      >
-        <Alert onClose={() => {}} severity="error">
-          <AlertTitle>Info</AlertTitle>
-          This is an alert — <strong>check it out!</strong>
-        </Alert>
-      </Snackbar>
-
       <ValidatorForm onSubmit={handleFormSubmit} className="auth-form">
         <div className="auth-form-content">
           <h3 className="auth-form-title">

@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink } from "react-router-dom";
-import { DarkModeContext } from "../../context/darkModeContext";
+import { DarkModeContext } from "../../core/store/theme/darkMode-context";
 import AuthContext from "../../core/store/auth-context";
 import { menuItems } from "../../services/metadata/menu-items";
 
