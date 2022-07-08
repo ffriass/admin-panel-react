@@ -4,7 +4,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
- 
+import { Grid } from '@mui/material';
+
 const Widget = ({ type }) => {
 
   let data;
@@ -13,11 +14,11 @@ const Widget = ({ type }) => {
   const diff = 20;
 
   switch (type) {
-      case "user":
+      case "agents":
         data = {
-          title: "USERS",
+          title: "AGENTS",
           isMoney: false,
-          link: "See all users",
+          link: "See all agents",
           icon: (
             <PersonIcon
               className="icon"
@@ -78,7 +79,8 @@ const Widget = ({ type }) => {
         break;
     }
   return (
-    <div className="widget">
+    <Grid xs={6} md={3}>
+      <div className="widget">
         <div className="left">
             <span className="title">{data.title}</span>
             <span className="counter">
@@ -94,6 +96,7 @@ const Widget = ({ type }) => {
             {data.icon}      
         </div>        
     </div>
+    </Grid>    
   )
 }
 

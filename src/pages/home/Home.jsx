@@ -14,16 +14,20 @@ const Home = () => {
   return (
     <Layout>
       <div className="homeContainer">
-        <div className="widgets">
-          <Widget type="user" />
+        <Grid container className="widgets">
+          <Widget type="agents" />
           <Widget type="order" />
           <Widget type="earning" />
           <Widget type="balance" />
-        </div>
-        <div className="charts">
-          <Featured />
-          <Chart title="Last 6 months Revenue" aspect={2 / 1} />
-        </div>
+        </Grid>
+        <Grid container className="charts">
+          <Grid xs={12} md={5}>
+            <Featured />
+          </Grid>
+          <Grid xs={12} md={7}>
+            <Chart title="Last 6 months Revenue" aspect={2 / 1} />
+          </Grid>
+        </Grid>
         <div className="listContainer">
           <div className="listTitle">Lastest Transactions</div>
           <List />
