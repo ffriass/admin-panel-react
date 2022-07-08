@@ -6,7 +6,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { useState, useEffect } from 'react';
 import { getServices } from '../../services/api/actions';
 import useFetch from '../../core/hooks/useFetch';
-import VerticalBarsLoading from '../loading-indicator/Loading'
 
 const DataTable = (colums, rows = []) => {
 
@@ -16,7 +15,6 @@ const DataTable = (colums, rows = []) => {
   const handleDelete = (id) =>{
     setData(data.filter(item => item.id !== id));
   };
-  const handleFetch = () =>{  };
   
     const actionColumn =[
         {
@@ -40,7 +38,7 @@ const DataTable = (colums, rows = []) => {
     <div className="datatable">     
       <div className="datatableTitle">       
         <Link to="/users/new" className='link'>
-          Add new user
+          
         <AddIcon/>
         </Link>
       </div>      
@@ -51,7 +49,7 @@ const DataTable = (colums, rows = []) => {
         rowsPerPageOptions={[9]} 
         loading={false}
         autoHeight
-        checkboxSelection
+        checkboxSelection 
       />
     </div>
   );

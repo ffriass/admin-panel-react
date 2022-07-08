@@ -1,9 +1,23 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import { xFetch } from "../helpers/fetch-helper";
+import AppContext from "../store/app-context";
+
+const responseHandler = (response, setState, dispatch) => {
+
+  if(dispatch){
+    if(response.isSuccess)
+      dispatch(response?.payload)
+    else
+    dispatch(response)
+  }
+    
+  setState(response);
+}
 
 const useFetch = (options = null) => {
   const [fetchResult, setFetchResult] = useState(null);
   const [isloading, setIsLoading] = useState(false);
+  const appContext = useContext(AppContext);
 
   useEffect(() => {
     if (options) 
@@ -12,34 +26,22 @@ const useFetch = (options = null) => {
 
   const sendRequest = useCallback(async (options, dispatch = null) => {
     setIsLoading(true);
+    appContext.showLoading(!!options.showGlobalLoading)
     setFetchResult(null)
     try {
       const response = await xFetch(options);
 
-      if(!response.isSuccess){
-        throw new Error(response.error.message || "Something went wrong!");
-      }
-      if(dispatch)
-        dispatch(response.payload)
-        
-        console.log('The response: ', response);
-        setFetchResult(response);
-      /*xFetch(options)
-        .then((result) => {
-          setFetchResult(result);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          setFetchResult(error);
-          setIsLoading(false);
-        });*/
+      if(!response.isSuccess)
+        throw new Error(response?.error?.message || "Something went wrong!");      
+
+        responseHandler(response, setFetchResult, dispatch);
+
     } catch (e) {
-      setFetchResult({
-        error: e,
-        isSuccess: false
-      });
+      console.log(e)
+      responseHandler({ error: e, isSuccess: false }, setFetchResult, dispatch);
     }
     setIsLoading(false);
+    appContext.showLoading(false)
   }, []);
 
   return [fetchResult, sendRequest, isloading];

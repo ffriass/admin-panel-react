@@ -1,6 +1,6 @@
 .datatable {
-    height: 600px;
     padding: 20px;
+    width: auto;
     
     
     .datatableTitle{
@@ -24,6 +24,8 @@
         gap: 10px;
         display: flex;
         cursor: pointer;
+        justify-content: center;
+        width: 5%;
       }
     }
 

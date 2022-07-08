@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import "./login.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate, Link } from "react-router-dom";
-//import { Card, Grid, Button, CircularProgress } from "@material-ui/core";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import useFetch from "../../core/hooks/useFetch";
 import VerticalBarsLoading from "../../components/loading-indicator/Loading";
@@ -45,7 +44,7 @@ const Login = () => {
           } else {
             console.log("jjajaajaj")
             appContext.showAlert({
-              title: "Invalid",
+              title: result.error.message,
               message: "Your email or password are incorrect",
               // strongMessage: "Try Again!",
               severity:"error"
@@ -115,7 +114,6 @@ const Login = () => {
           </p>
         </div>
       </ValidatorForm>
-      <VerticalBarsLoading loading={isLoading} />
     </div>
   );
 };

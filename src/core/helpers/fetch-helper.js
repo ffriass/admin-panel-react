@@ -16,15 +16,6 @@ const allowedFetchOptions = [
   'agent'
 ];
 
-/**
- * innerDispatch - helper that calls dispatch and adds some other logic
- *
- * @param {object} body to dispatch
- * @param {bool} success false if we want to throw an error
- * @param {Response} response
- * @param {boolean} didThrowException
- */
-
 const _internalFetch = (url, options) => {
 
   /*dispatch({
@@ -38,7 +29,7 @@ const _internalFetch = (url, options) => {
     skipCredentials: false,
   });
 
-  let responsePromise = fetch(request).then((response) => response /*_checkAuthentication(response, url, options)*/);
+  let responsePromise = fetch(request).then((response) => response /* TODO:_checkAuthentication(response, url, options)*/);
 
   responsePromise = responsePromise.then((res) => {
     // Convert response to text and return original response + data
@@ -63,7 +54,7 @@ const _internalFetch = (url, options) => {
         if (obj.payload.length > 0) {
           obj.payload = JSON.parse(obj.payload);
 
-          //TODO: add feature. Not suported yet
+          //TODO: add feature. Not suported yet.
           /*if (options.convertToCamelCase) {
             obj.payload = snakeToCamelCaseObject(obj.payload)
           } else if (options.convertToSnakeCase) {
@@ -92,16 +83,12 @@ const _internalFetch = (url, options) => {
           ? JSON.stringify(result.payload)
           : result.payload;
 
-          console.log('Result 2: ', !errorMessage ? result.response.statusText : errorMessage);
+        console.log('Result 2: ', !errorMessage ? result.response.statusText : errorMessage);
 
-        //throw new Error(!errorMessage ? result.response.statusText : errorMessage);
-        return {
-          payload: result.payload,          
-          isSuccess: true
-        };
+        throw new Error(!errorMessage ? result.response.statusText : errorMessage);
+      
       } else {
         //innerDispatch(result.payload, true, result.response);
-
         return {
           payload: result.payload,          
           isSuccess: true
@@ -110,7 +97,6 @@ const _internalFetch = (url, options) => {
     })
     .catch((error) => {
       //TODO: Create retry feature when applicable calling _internalFetch again with adjustemnts
-      
       return {
         error: error,
         isSuccess: false
@@ -124,10 +110,8 @@ const xFetch = (options) => {
   }
 
   //TODO: start using cache when nedeed ang clear it when is not GET
-
   return _internalFetch(options.url, options);
 };
-
 
 export {
   xFetch

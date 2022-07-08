@@ -2,17 +2,16 @@ import { getApiOptions,getPostApiOptions, getPutApiOptions,getDeleteApiOptions }
 import * as actionKeys from './constants'
 
 //GET
-export const getServices = () => {
+export const getServices = (showGlobalLoading = true) => {
 
-  const options = getApiOptions('service', actionKeys.GET_SERVICES);
+  const options = getApiOptions('service', actionKeys.GET_SERVICES, showGlobalLoading);
   console.log('options', options);
   return options;
 };
 
-
 //POST
 export const login = (userInfo) => {
-  return getPostApiOptions('account/authenticate', userInfo, actionKeys.AUTHENTICATE);
+  return getPostApiOptions('account/authenticate', userInfo, actionKeys.AUTHENTICATE, true);
 }
 
 //PUT
