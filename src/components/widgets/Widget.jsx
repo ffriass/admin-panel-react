@@ -5,6 +5,7 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import { Grid } from '@mui/material';
+import { PersonAdd, VerifiedUserTwoTone } from '@mui/icons-material';
 
 const Widget = ({ type }) => {
 
@@ -46,13 +47,13 @@ const Widget = ({ type }) => {
           ),
         };
         break;
-      case "earning":
+      case "customers":
         data = {
-          title: "EARNINGS",
+          title: "CUSTOMERS",
           isMoney: true,
-          link: "View net earnings",
+          link: "View all customers",
           icon: (
-            <MonetizationOnOutlinedIcon
+            <PersonIcon
               className="icon"
               style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
             />

@@ -2,7 +2,7 @@ import { getApiOptions,getPostApiOptions, getPutApiOptions,getDeleteApiOptions }
 import * as actionKeys from './constants'
 
 //GET
-export const getServices = (showGlobalLoading = true) => {
+export const getServices = (showGlobalLoading = false) => {
 
   const options = getApiOptions('service', actionKeys.GET_SERVICES, showGlobalLoading);
   console.log('options', options);

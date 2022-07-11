@@ -17,7 +17,7 @@ const Home = () => {
         <Grid container className="widgets">
           <Widget type="agents" />
           <Widget type="order" />
-          <Widget type="earning" />
+          <Widget type="customers" />
           <Widget type="balance" />
         </Grid>
         <Grid container className="charts">
