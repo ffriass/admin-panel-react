@@ -1,16 +1,18 @@
-import "./datatable.scss";
+import React from 'react'
+import "../../../components/datatable/datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatable-source";
+import { userColumns, userRows } from "../../../datatable-source";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useState, useEffect } from "react";
-import { getServices } from "../../services/api/actions";
-import useFetch from "../../core/hooks/useFetch";
+import { getServices } from "../../../services/api/actions";
+import useFetch from "../../../core/hooks/useFetch";
 
-const DataTable = (props, colums, rows = []) => {
+const Agent = (props) => {
+
   const [data, setData] = useState(userRows);
-  //const [response, callback, isloading] = useFetch(getServices())
-  //console.log("Datatable ");
+  const [response, callback, isloading] = useFetch(getServices())
+  console.log("Agent ");
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
@@ -42,7 +44,7 @@ const DataTable = (props, colums, rows = []) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <div>{props.title}</div>
+        <div>Agents List</div>
         <Link to="/users/new" className="link">
           <AddIcon />
         </Link>
@@ -62,4 +64,4 @@ const DataTable = (props, colums, rows = []) => {
   );
 };
 
-export default DataTable;
+export default Agent;

@@ -14,6 +14,7 @@ import { DarkModeContext } from "./core/store/theme/darkMode-context";
 import AuthContext from "./core/store/auth-context";
 import AppContext from "./core/store/app-context";
 import VerticalBarsLoading from "./components/loading-indicator/Loading";
+import Users from "./pages/list/Users";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -32,7 +33,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="login" element={<Login />} />
               <Route path="users">
-                <Route index element={<List />} />
+                <Route index element={<Users />} />
                 <Route path=":userId" element={<Single />} />
                 <Route
                   path="new"
