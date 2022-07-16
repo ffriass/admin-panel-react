@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./home.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
@@ -9,16 +9,21 @@ import List from "../../components/table/Table";
 import Grid from "@mui/material/Grid";
 import { Box, Container, Stack } from "@mui/material";
 import Layout from "../../components/layout/Layout";
+import AppContext from "../../core/store/app-context";
+import useFetch from "../../core/hooks/useFetch";
+import { getServices } from "../../services/api/actions";
 
 const Home = () => {
+  const appContext = useContext(AppContext);
+  const [response, callback, isloading] = useFetch(getServices())
   return (
     <Layout>
       <div className="homeContainer">
         <Grid container className="widgets">
-          <Widget type="agents" />
-          <Widget type="order" />
-          <Widget type="customers" />
-          <Widget type="balance" />
+          <Widget isloading type="agents" />
+          <Widget isloading type="order" />
+          <Widget isloading type="customers" />
+          <Widget isloading type="balance" />
         </Grid>
         <Grid container className="charts">
           <Grid xs={12} md={5}>
