@@ -1,2 +1,6 @@
+// GET
 export const GET_SERVICES = 'GET_SERVICES';
+export const GROUPED_USERS_COUNT = 'GROUPED_USERS_COUNT';
+
+// POST
 export const AUTHENTICATE = 'AUTHENTICATE';

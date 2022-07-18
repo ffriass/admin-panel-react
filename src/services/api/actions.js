@@ -5,7 +5,11 @@ import * as actionKeys from './constants'
 export const getServices = (showGlobalLoading = false) => {
 
   const options = getApiOptions('service', actionKeys.GET_SERVICES, showGlobalLoading);
-  console.log('options', options);
+  return options;
+};
+export const getGroupedUsersCount = (period = null, showGlobalLoading = false) => {
+
+  const options = getApiOptions(`home/users-count`, actionKeys.GROUPED_USERS_COUNT, showGlobalLoading);
   return options;
 };
 
