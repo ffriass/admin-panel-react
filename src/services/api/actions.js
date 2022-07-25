@@ -13,6 +13,12 @@ export const getGroupedUsersCount = (period = null, showGlobalLoading = false) =
   return options;
 };
 
+export const getUsers = (userType, page = 0, pageSize = 100, showGlobalLoading = false) => {
+
+  const options = getApiOptions(`users/${userType}?page=${page}&pageSize=${pageSize}`, actionKeys.GET_USERS, showGlobalLoading);
+  return options;
+}
+
 //POST
 export const login = (userInfo) => {
   return getPostApiOptions('account/authenticate', userInfo, actionKeys.AUTHENTICATE, true);

@@ -5,19 +5,40 @@ import { userColumns, userRows } from "../../../datatable-source";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useState, useEffect } from "react";
-import { getServices } from "../../../services/api/actions";
+import { getUsers } from "../../../services/api/actions";
 import useFetch from "../../../core/hooks/useFetch";
 
 const Agent = (props) => {
+  const [pageSize] = useState(10);
+  const [response, callback, isloading] = useFetch(getUsers("agents", 0, pageSize))
+  const [data, setData] = useState(response?.payload?.data);
+  //const [page, setPage] = useState(0);  
+  const [rowCountState, setRowCountState] = useState(response?.payload?.rowCount || 0 );
 
-  const [data, setData] = useState(userRows);
-  const [response, callback, isloading] = useFetch(getServices())
-  console.log("Agent ");
+
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    //setData(data.filter((item) => item.id !== id));
+  };
+
+  const handlePageChange = (newPage) => {    
+    callback(getUsers("agents", newPage, pageSize), result => {      
+      setData(result.data);
+    });
   };
 
   const actionColumn = [
+    {
+      field: "status",
+      headerName: "Status",
+      width: 160,
+      renderCell: (params) => {
+        return (
+          <div className={`cellWithStatus ${params.row.status == 2 ? 'active' : !params.row.status ? 'pending': 'inactive'}`}>
+            {params.row.status == 2 ? 'Aprobado' : !params.row.status ? 'Pendiente' : 'Rechazado' }
+          </div>
+        );
+      }
+    },
     {
       field: "action",
       headerName: "Action",
@@ -41,22 +62,34 @@ const Agent = (props) => {
     }
   ];
 
+  useEffect(() => {
+
+    setData(response?.payload?.data);
+    setRowCountState((prevRowCountState) =>
+    response?.payload?.rowCount !== undefined
+        ? response?.payload?.rowCount
+        : prevRowCountState,
+    );
+  }, [response?.payload?.rowCount , setRowCountState]);
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <div>Agents List</div>
+        <div>Agents</div>
         <Link to="/users/new" className="link">
           <AddIcon />
         </Link>
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={data || []}
         columns={userColumns.concat(actionColumn)}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        //loading={isloading}
+        pageSize={pageSize}
+        rowCount = {rowCountState}
+        loading={isloading}
         autoHeight
+        paginationMode='server'
+        onPageChange={handlePageChange}
         // checkboxSelection
         components={{ Toolbar: GridToolbar }}
       />
