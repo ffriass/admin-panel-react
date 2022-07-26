@@ -15,6 +15,7 @@ import AuthContext from "./core/store/auth-context";
 import AppContext from "./core/store/app-context";
 import VerticalBarsLoading from "./components/loading-indicator/Loading";
 import Users from "./pages/list/Users";
+import Products from "./pages/list/Products";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -49,8 +50,8 @@ function App() {
                 />
               </Route>
               <Route path="products">
-                <Route index element={<List />} />
-                <Route path=":productId" element={<Single />} />
+                <Route index element={<Products />} />
+                {/* <Route path=":productId" element={<Single />} /> */}
                 <Route
                   path="new"
                   element={

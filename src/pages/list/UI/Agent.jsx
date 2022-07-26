@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../../components/datatable/datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../../datatable-source";
+import { userColumns } from "../../../datatable-source";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useState, useEffect } from "react";
@@ -12,7 +12,6 @@ const Agent = (props) => {
   const [pageSize] = useState(10);
   const [response, callback, isloading] = useFetch(getUsers("agents", 0, pageSize))
   const [data, setData] = useState(response?.payload?.data);
-  //const [page, setPage] = useState(0);  
   const [rowCountState, setRowCountState] = useState(response?.payload?.rowCount || 0 );
 
 

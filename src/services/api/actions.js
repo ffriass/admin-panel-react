@@ -1,4 +1,4 @@
-import { getApiOptions,getPostApiOptions, getPutApiOptions,getDeleteApiOptions } from "../../core/helpers/fetch-options-helper";
+import { getApiOptions, getPostApiOptions, getPutApiOptions, getDeleteApiOptions } from "../../core/helpers/fetch-options-helper";
 import * as actionKeys from './constants'
 
 //GET

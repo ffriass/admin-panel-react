@@ -57,7 +57,7 @@ export const menuItems = [
       },
       {
         title: "Orders",
-        link: "/ordders",
+        link: "/orders",
         materialIconTag: "receip",
         icon: <ReceiptIcon className="icon" />,
         tag: "bh-orders-list",

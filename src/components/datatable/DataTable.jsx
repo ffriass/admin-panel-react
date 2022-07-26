@@ -51,10 +51,11 @@ const DataTable = (props, colums, rows = []) => {
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
-        pageSize={10}
+        pageSize={2}
         rowsPerPageOptions={[10]}
         //loading={isloading}
-        autoHeight
+        autoHeight 
+        onPageChange={(page) => {alert(page)}}
         // checkboxSelection
         components={{ Toolbar: GridToolbar }}
       />

@@ -25,7 +25,7 @@ export const userColumns = [
     field: "phoneNumber",
     headerName: "Phone",
     width: 230
-  },
+  }
   // {
   //   field: "status",
   //   headerName: "Status",
@@ -40,47 +40,124 @@ export const userColumns = [
   // }
 ];
 
-export const productsColumns = [
+export const productColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
-    field: "user",
-    headerName: "User",
+    field: "name",
+    headerName: "Name",
+    width: 150
+    // renderCell: (params) => {
+    //   return (
+    //     <div className="cellWithImg">
+    //       <img className="cellImg" src={params.row.img} alt="avatar" />
+    //       {params.row.username}
+    //     </div>
+    //   );
+    // }
+  },
+  {
+    field: "description",
+    headerName: "Description",
     width: 230,
-    renderCell: (params) => {
-      return (
-        <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
-          {params.row.username}
-        </div>
-      );
-    }
+    flex: 2
   },
   {
-    field: "email",
-    headerName: "Email",
-    width: 230
-  },
-
-  {
-    field: "age",
-    headerName: "Age",
+    field: "durationInMinutes",
+    headerName: "Duration",
     width: 100
   },
   {
-    field: "status",
+    field: "details",
     headerName: "Status",
     width: 160,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
+        <div
+          className={`cellWithStatus ${
+            params.row.details.length > 0 ? "active" : "passive"
+          }`}
+        >
+          {params.row.details.length > 0 ? "Available" : "Unavailable"}
         </div>
       );
     }
   }
 ];
+export const productDetailColumns = [
+  {
+    field: "id",
+    headerName: "ID",
+    width: 70,
+    hide: true
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    width: 150,
+    ype: 'money',
+    flex: 1
+    // renderCell: (params) => {
+    //   return (
+    //     <div className="cellWithImg">
+    //       <img className="cellImg" src={params.row.img} alt="avatar" />
+    //       {params.row.username}
+    //     </div>
+    //   );
+    // }
+  },
+  {
+    field: "initialTime",
+    headerName: "Start",
+    width: 230,
+    flex: 1
+  },
+  {
+    field: "finalTime",
+    headerName: "End",
+    width: 100,
+    flex: 1
+  }
+];
 
 //temporary data
+export const productRows = [
+  {
+    id: 1,
+    name: "CLASICO",
+    description:
+      "nnkjbwkjbkjwbjkbkwjbckjbwjkwbcjkwkjccjkwckjwcjkwjkcwjckjwbkcjwbbwjbcjkwbkwbkw",
+    details: [
+      {
+        id: 1,
+        serviceId: 1,
+        price: 400,
+        initialTime: 759,
+        finalTime: 900
+      },
+      {
+        id: 1,
+        serviceId: 1,
+        price: 400,
+        initialTime: 759,
+        finalTime: 900
+      },
+      {
+        id: 3,
+        serviceId: 1,
+        price: 400,
+        initialTime: 759,
+        finalTime: 900
+      },
+      {
+        id: 4,
+        serviceId: 1,
+        price: 400,
+        initialTime: 759,
+        finalTime: 900
+      }
+    ]
+  }
+];
 export const userRows = [
   {
     id: 1,
