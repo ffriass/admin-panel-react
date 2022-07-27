@@ -13,9 +13,15 @@ export const getGroupedUsersCount = (period = null, showGlobalLoading = false) =
   return options;
 };
 
-export const getUsers = (userType, page = 0, pageSize = 100, showGlobalLoading = false) => {
+export const getUsers = (userType, page = 0, pageSize = 10, showGlobalLoading = false) => {
 
   const options = getApiOptions(`users/${userType}?page=${page}&pageSize=${pageSize}`, actionKeys.GET_USERS, showGlobalLoading);
+  return options;
+}
+
+export const getTransactions = (page = 0, pageSize = 10, showGlobalLoading = false) => {
+
+  const options = getApiOptions(`home/transactions?page=${page}&pageSize=${pageSize}`, actionKeys.GET_TRANSACTIONS, showGlobalLoading);
   return options;
 }
 

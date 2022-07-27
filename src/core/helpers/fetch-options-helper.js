@@ -1,5 +1,3 @@
-//import { getUrl, siteNames } from '@eig-builder/core-utils/helpers/url-helper';
-
 const getToken = () => {
   return localStorage.getItem("token");
 };
@@ -8,7 +6,6 @@ export const getApiOptions = (endpoint, key, showGlobalLoading = false, returnTy
   const options = {
     key,
     //TODO:create method to get the base URL
-    // url: `https://app-masterapi-prod.azurewebsites.net/${endpoint}`, //getUrl(siteNames.API_CRM, endpoint),
     url: `https://localhost:5001/${endpoint}`, //getUrl(siteNames.API_CRM, endpoint),
     returnType,
     showGlobalLoading,

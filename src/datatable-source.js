@@ -1,3 +1,46 @@
+
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import PayPalIcon from './components/icons/PayPal';
+
+const statusClassMapping = (status) => {
+  switch (status) {
+    case "Approved":
+    case "Paid":
+    case "Completed":
+      return "active";
+    case "Authorized":
+    case "Acepted":
+    case "InProcess":
+      return "proccess";
+    case "Registered":
+      return "pending";
+    case "Canceled":
+    case "AutoCancelled":
+      return "passive";
+    case "Refunded":
+    case "Inhabilitado":
+      return "newtral";
+
+    default:
+      return "";
+  }
+};
+
+const iconMapping = (value) =>{
+  switch (value) {
+    case "CreditCard":
+      return <CreditCardIcon/>
+    case "Cash":
+      return <LocalAtmIcon style={{color:'green'}}/>
+    case "PayPal":
+      return <PayPalIcon/>
+
+    default:
+      return <LocalAtmIcon style={{color:'green'}}/>;
+  }
+
+};
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -39,6 +82,7 @@ export const userColumns = [
   //   }
   // }
 ];
+
 
 export const productColumns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -94,7 +138,7 @@ export const productDetailColumns = [
     field: "price",
     headerName: "Price",
     width: 150,
-    ype: 'money',
+    ype: "money",
     flex: 1
     // renderCell: (params) => {
     //   return (
@@ -116,6 +160,86 @@ export const productDetailColumns = [
     headerName: "End",
     width: 100,
     flex: 1
+  }
+];
+
+export const transactionsColumns = [
+  {
+    field: "id",
+    headerName: "ID",
+    width: 70,
+    hide: false
+  },
+  {
+    field: "topService",
+    headerName: "Service",
+    width: 150,
+    flex: 1
+    // renderCell: (params) => {
+    //   return (
+    //     <div className="cellWithImg">
+    //       <img className="cellImg" src={params.row.img} alt="avatar" />
+    //       {params.row.username}
+    //     </div>
+    //   );
+    // }
+  },
+  {
+    field: "date",
+    headerName: "Date",
+    width: 230,
+    flex: 1
+  },
+  {
+    field: "customer",
+    headerName: "Customer",
+    width: 100,
+    flex: 1
+  },
+  {
+    field: "agent",
+    headerName: "Agent",
+    width: 100,
+    flex: 1
+  },
+  {
+    field: "amount",
+    headerName: "Amount",
+    width: 100,
+    flex: 1
+  },
+  {
+    field: "paymentMethod",
+    headerName: "Method",
+    width: 100,
+    flex: 1,
+    renderCell: (param) => iconMapping(param.row.paymentMethod)
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 100,
+    flex: 1,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${ statusClassMapping(params.row.status)}`}>
+          {params.row.status}
+        </div>
+      );
+    }
+  },
+  {
+    field: "invoice",
+    headerName: "Invoice",
+    width: 100,
+    flex: 1,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${statusClassMapping(params.row.invoice)}`}>
+          {params.row.invoice}
+        </div>
+      );
+    }
   }
 ];
 

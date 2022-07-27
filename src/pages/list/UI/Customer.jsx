@@ -33,8 +33,8 @@ const Customer = (props) => {
       width: 160,
       renderCell: (params) => {
         return (
-          <div className={`cellWithStatus ${params.row.status == 2 ? 'active' : !params.row.status ? 'pending': 'inactive'}`}>
-            {params.row.status == 2 ? 'Aprobado' : !params.row.status ? 'Pendiente' : 'Rechazado' }
+          <div className={`cellWithStatus ${params.row.isActive ? 'active' : 'pending'}`}>
+            {params.row.isActive ? 'Activo' : 'Pendiente' }
           </div>
         );
       }

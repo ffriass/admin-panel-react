@@ -5,7 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Widget from "../../components/widgets/Widget";
 import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
-import List from "../../components/table/Table";
+import Transactions from "../../components/table/Table";
 import Grid from "@mui/material/Grid";
 import { Box, Container, Stack } from "@mui/material";
 import Layout from "../../components/layout/Layout";
@@ -95,16 +95,16 @@ const extractWidgetData = (type, data) => {
 const Home = () => {
   const appContext = useContext(AppContext);
   const [usersCountResponse, usersCountCallback, usersCountIsLoading] = useFetch(getGroupedUsersCount())
+  //const [transResponse, transCallback, transCountIsLoading] = useFetch(getTransactions(0, 2))
 
-  console.log(usersCountResponse);
   return (
     <Layout>
       <div className="homeContainer">
         <Grid container className="widgets">
-          <Widget isLoading={usersCountIsLoading} data={extractWidgetData("agents", usersCountResponse?.payload.data)} />
-          <Widget isLoading={false} data={extractWidgetData("order", usersCountResponse?.payload.data)} />
-          <Widget isLoading={usersCountIsLoading} data={extractWidgetData("customers", usersCountResponse?.payload.data)} />
-          <Widget isLoading={false} data={extractWidgetData("balance", usersCountResponse?.payload.data)} />
+          <Widget isLoading={usersCountIsLoading} data={extractWidgetData("agents", usersCountResponse?.payload?.data)} />
+          <Widget isLoading={false} data={extractWidgetData("order", usersCountResponse?.payload?.data)} />
+          <Widget isLoading={usersCountIsLoading} data={extractWidgetData("customers", usersCountResponse?.payload?.data)} />
+          <Widget isLoading={false} data={extractWidgetData("balance", usersCountResponse?.payload?.data)} />
         </Grid>
         <Grid container className="charts">
           <Grid xs={12} md={5}>
@@ -116,7 +116,7 @@ const Home = () => {
         </Grid>
         <div className="listContainer">
           <div className="listTitle">Lastest Transactions</div>
-          <List />
+          <Transactions />
         </div>
       </div>
     </Layout>
