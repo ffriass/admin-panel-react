@@ -23,7 +23,7 @@ const Chart = ({ props, aspect, title }) => {
   return (
     <div className="chart">
       <div className="title">{title}</div>
-      {props?.isLoading ? (
+      {!props?.isLoading ? (
         <ResponsiveContainer width="100%" aspect={aspect}>
           <AreaChart
             width={730}
@@ -53,7 +53,7 @@ const Chart = ({ props, aspect, title }) => {
       ) : (
         <>
           <Skeleton width={"100%"} /> 
-          <Skeleton height={"80%"} widh={100} />
+          <Skeleton height={"10%"} widh={100} />
           <Skeleton width={"100%"}/>
         </>
       )}

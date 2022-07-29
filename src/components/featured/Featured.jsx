@@ -11,7 +11,7 @@ const Featured = (props) => {
   return (
     <div className="featured">
       <div className="top">
-        {props.isLoading ? (
+        {!props.isLoading ? (
           <h1 className="title">Total Revenue</h1>
         ) : (
           <Skeleton width={"30%"} />
@@ -20,14 +20,14 @@ const Featured = (props) => {
       </div>
       <div className="bottom">
         <div className="featuredChart">
-          {props.isLoading ? (
+          {!props.isLoading ? (
             <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
           ) : (
             <Skeleton height={"100%"} widh={"100%"} variant="circular" />
           )}
         </div>
         <p className="title">Total sales made today</p>
-        {props.isLoading ? (
+        {!props.isLoading ? (
           <p className="amount">$420</p>
         ) : (
           <Skeleton
@@ -40,7 +40,7 @@ const Featured = (props) => {
         <p className="desc">
           Previous transactions processing. Last payments may not be included.
         </p>
-        {props.isLoading ? (
+        {!props.isLoading ? (
           <div className="summary">
             <div className="item">
               <div className="itemTitle">Target</div>

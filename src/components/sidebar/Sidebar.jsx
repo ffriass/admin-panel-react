@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import "./sidebar.scss";
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { confirmAlert } from 'react-confirm-alert';
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -13,7 +15,18 @@ const Sidebar = () => {
   const authContext = useContext(AuthContext);
 
   const logoutHandler = () => {
-    authContext.logout();
+  
+      confirmAlert({
+        title: 'Login out',
+        message: 'Do you want to continue?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: () =>  authContext.logout()
+          },
+          {label: 'No' }
+        ]
+      });
   };
 
   return (

@@ -1,0 +1,212 @@
+.singleContainer {
+  flex: 6;
+
+  .top {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+
+    .left {
+      flex: 1;
+      -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+      padding: 20px;
+      position: relative;
+
+      //   .rightTopElements {
+      //     position: absolute;
+      //     display: flex;
+      //     top: 0;
+      //     right: 0;
+      //     padding: 0px;
+
+      //     .element {
+      //       padding: 5px;
+      //       margin: 0px 5px 0px 0px;
+      //       font-size: 14px;
+      //       background-color: #7551f818;
+      //       cursor: pointer;
+      //       border-radius: 0px 0px 0px 5px;
+
+      //       &.connected {
+      //         background-color: rgba(0, 128, 0, 0.05);
+      //         color: green;
+      //       }
+      //       &.disconnected {
+      //         background-color: rgba(255, 0, 0, 0.05);
+      //         color: crimson;
+      //       }
+      //     }
+
+      //     .editButton {
+      //       // position: absolute;
+      //       // top: 0;
+      //       // right: 0;
+      //       padding: 5px;
+      //       margin: 0px;
+      //       font-size: 14px;
+      //       color: #7451f8;
+      //       background-color: #7551f818;
+      //       cursor: pointer;
+      //       border-radius: 0px 0px 0px 5px;
+      //     }
+      //   }
+
+      //   // .editButton {
+      //   //   position: absolute;
+      //   //   top: 0;
+      //   //   right: 0;
+      //   //   padding: 5px;
+      //   //   font-size: 12px;
+      //   //   color: #7451f8;
+      //   //   background-color: #7551f818;
+      //   //   cursor: pointer;
+      //   //   border-radius: 0px 0px 0px 5px;
+      //   // }
+
+      //   .item {
+      //     display: flex;
+      //     gap: 20px;
+
+      //     .itemImg {
+      //       width: 100px;
+      //       height: 100px;
+      //       border-radius: 50%;
+      //       object-fit: cover;
+      //     }
+
+      //     .details {
+      //       .itemTitle {
+      //         margin-bottom: 10px;
+      //         color: #555;
+      //       }
+
+      //       .detailItem {
+      //         margin-bottom: 10px;
+      //         font-size: 14px;
+
+      //         .itemKey {
+      //           font-weight: bold;
+      //           color: gray;
+      //           margin-right: 5px;
+      //         }
+
+      //         .itemValue {
+      //           font-weight: 300;
+      //         }
+      //       }
+      //     }
+      //   }
+      //   .itemActionContainer {
+      //     display: flex;
+      //     gap: 15px;
+      //     position: absolute;
+      //     bottom: 0;
+      //     right: 0;
+      //     margin: 5px;
+      //     font-size: 14px;
+
+      //     .payButton {
+      //       padding: 5px;
+      //       background-color: rgba(41, 132, 229, 0.05);
+      //       color: rgb(41, 132, 229);
+      //       cursor: pointer;
+      //       border-style: solid;
+      //       border-radius: 5px;
+      //     }
+
+      //     .sendButton {
+      //       padding: 5px;
+      //       color: blue;
+      //     //   background-color: rgba(0, 0, 255, 0.236);
+      //       cursor: pointer;
+      //       border-style: solid;
+      //       border-radius: 5px;
+      //     }
+
+      //     .availableButton {
+      //       padding: 5px;
+      //       color: black;
+      //       background-color: rgba(189, 189, 3, 0.103);
+      //       cursor: pointer;
+      //       border-radius: 5px;
+      //       border-style: solid;
+      //     }
+      //   }
+    }
+
+    .right {
+      flex: 1;
+
+      .userFinantialDetailTitle {
+        display: flex;
+        align-content: center;
+        justify-content: start;
+        font-size: 16px;
+        padding-left: 15px;
+        color: gray;
+        // margin-left: 10px;  
+
+    //     .finItem {
+    //         padding: 5px;
+    //         margin-left: 10px;        
+    //   }
+    }
+      .userFinantialDetail {
+        display: flex;
+        align-content: center;
+        justify-content: end;
+       
+        .finItem {
+          padding: 5px;
+          margin-right: 10px;
+          cursor: pointer;
+          border-style: solid;
+          border-radius: 5px;
+          border-width: 1px;
+          font-size: 15px;
+
+          &.active {
+            background-color: rgba(0, 128, 0, 0.05);
+            color: green;
+            border-color: green;
+          }
+          &.proccess {
+            background-color: rgba(41, 132, 229, 0.05);
+            color: rgb(41, 132, 229);
+            border-color: rgb(41, 132, 229);
+          }
+          &.pending  {
+            background-color: rgba(255, 217, 0, 0.05);
+            color: goldenrod;
+            border-color: goldenrod;
+          }
+          &.passive {
+            background-color: rgba(255, 0, 0, 0.05);
+            color: crimson;
+            border-color: crimson;
+          }
+          &.neutral {
+            background-color: rgba(250, 128, 114, 0.152);
+            color: salmon;
+            border-color: salmon;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    padding: 20px;
+    margin: 10px 20px;
+  }
+
+  .title {
+    font-size: 16px;
+    color: gray;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+}

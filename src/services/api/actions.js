@@ -18,6 +18,11 @@ export const getUsers = (userType, page = 0, pageSize = 10, showGlobalLoading = 
   const options = getApiOptions(`users/${userType}?page=${page}&pageSize=${pageSize}`, actionKeys.GET_USERS, showGlobalLoading);
   return options;
 }
+export const getAgentAvailabilityById = (id, showGlobalLoading = false) => {
+
+  const options = getApiOptions(`AgentAvailable/agent/${id}`, actionKeys.GET_AGENT_AVAILABILITY_BY_ID, showGlobalLoading);
+  return options;
+}
 
 export const getTransactions = (page = 0, pageSize = 10, showGlobalLoading = false) => {
 
@@ -25,9 +30,30 @@ export const getTransactions = (page = 0, pageSize = 10, showGlobalLoading = fal
   return options;
 }
 
+export const getTransactionsByUserId = (userId, page = 0, pageSize = 10, showGlobalLoading = false) => {
+
+  const options = getApiOptions(`home/transactions/${userId}?page=${page}&pageSize=${pageSize}`, actionKeys.GET_TRANSACTIONS_BY_USER, showGlobalLoading);
+  return options;
+}
+
+export const getBalanceDetail = (pending = false, showGlobalLoading = false) => {
+  const endpoint = pending ? `pending` : "";
+
+  const options = getApiOptions(`financial/balance/${endpoint}`, actionKeys.GET_BALANCE_DETAIL, showGlobalLoading);
+  return options;
+};
+
+export const getAgentBalanceDetail = (agentId, showGlobalLoading = false) => {
+
+  const options = getApiOptions(`financial/balance/pending-agent?agentId=${agentId}`, actionKeys.GET_AGENT_BALANCE_DETAIL, showGlobalLoading);
+  return options;
+};
 //POST
 export const login = (userInfo) => {
   return getPostApiOptions('account/authenticate', userInfo, actionKeys.AUTHENTICATE, true);
+}
+export const setAgentStatus = (statusInfo, showGlobalLoading = false) => {
+  return getPostApiOptions('account/status', statusInfo, actionKeys.SET_USER_STATUS, showGlobalLoading);
 }
 
 //PUT

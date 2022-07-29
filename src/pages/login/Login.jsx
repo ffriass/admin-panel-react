@@ -42,7 +42,6 @@ const Login = () => {
             authContext.authenticate(result.data /*, exp*/);
             navigate("/", { replace: true });
           } else {
-            console.log("jjajaajaj")
             appContext.showAlert({
               title: result.error.message,
               message: "Your email or password are incorrect",

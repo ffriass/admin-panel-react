@@ -1,6 +1,6 @@
 import "./datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatable-source";
+import { userColumns, userRows } from "../../services/metadata/datatable-definitions";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useState, useEffect } from "react";

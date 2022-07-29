@@ -1,5 +1,5 @@
 .datatable {
-    padding: 20px;
+    padding: 10px;
     width: auto;
     
     .datatableTitle{
@@ -27,6 +27,9 @@
         width: 5%;
       }
     }
+    .last-row{
+      background-color: rgba(25, 118, 210, 0.08);;
+    }
 
     .link{
       text-decoration: none;     
@@ -44,6 +47,7 @@
         margin-right: 20px;
       }
     }
+
   
     .cellWithStatus {
       padding: 5px;
@@ -66,8 +70,8 @@
         color: crimson;
       }
       &.neutral {
-        background-color: rgba(250, 128, 114, 0.152);
-        color: salmon;
+        background-color: rgba(128, 128, 128, 0.097);
+        color: grey;
       }
     }
   
@@ -89,7 +93,7 @@
         display: flex;
       }
 
-      .editButton {
+      .activeButton {
         padding: 2px 5px;
         border-radius: 5px;
         color: green;
@@ -101,13 +105,25 @@
         display: flex;
       }
       
-      .deleteButton {
+      .inactiveButton {
         padding: 2px 5px;
         border-radius: 5px;
         width: auto;
         color: crimson;
         border: 1px solid rgba(220, 20, 60, 0.6);
         background-color: rgba(255, 0, 0, 0.05);
+        cursor: pointer;
+        justify-content: center;
+        display: flex;
+      }
+
+      .neutralButton {
+        padding: 2px 5px;
+        border-radius: 5px;
+        width: auto;
+        color: orange;
+        border: 1px solid rgba(220, 20, 60, 0.6);
+        background-color: rgba(255, 166, 0, 0.06);
         cursor: pointer;
         justify-content: center;
         display: flex;

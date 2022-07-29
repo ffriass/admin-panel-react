@@ -27,13 +27,14 @@ const useFetch = (options = null) => {
   const sendRequest = useCallback(async (options, dispatch = null) => {
     setIsLoading(true);
     appContext.showLoading(!!options.showGlobalLoading)
-    setFetchResult(null)
+    //setFetchResult(null)
     try {
       const response = await xFetch(options);
 
       if(!response.isSuccess)
         throw new Error(response?.error?.message || "Something went wrong!");      
-
+        
+        //setFetchResult(response);//TODO: check behavior
         responseHandler(response, setFetchResult, dispatch);
 
     } catch (e) {

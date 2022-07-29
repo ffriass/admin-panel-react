@@ -1,26 +1,31 @@
 
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-import PayPalIcon from './components/icons/PayPal';
+import PayPalIcon from '../../components/icons/PayPal';
 
-const statusClassMapping = (status) => {
+export const statusClassMapping = (status) => {
   switch (status) {
     case "Approved":
     case "Paid":
     case "Completed":
+    case "Active":
       return "active";
     case "Authorized":
     case "Acepted":
     case "InProcess":
       return "proccess";
     case "Registered":
+    case "Unknown":
       return "pending";
     case "Canceled":
     case "AutoCancelled":
+    case "AutoCanceled":
+    case "Inactive":
       return "passive";
     case "Refunded":
     case "Inhabilitado":
-      return "newtral";
+    case "NotFound":
+      return "neutral";
 
     default:
       return "";
@@ -37,7 +42,7 @@ const iconMapping = (value) =>{
       return <PayPalIcon/>
 
     default:
-      return <LocalAtmIcon style={{color:'green'}}/>;
+      return <h6>{value}</h6>;
   }
 
 };
@@ -235,8 +240,61 @@ export const transactionsColumns = [
     flex: 1,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${statusClassMapping(params.row.invoice)}`}>
-          {params.row.invoice}
+        <div className={`cellWithStatus ${statusClassMapping(params.row.invoice ?? "NotFound")}`}>
+          {params.row.invoice ?? "NotFound"}
+        </div>
+      );
+    }
+  }
+];
+
+export const balanceColumns = [ 
+  {
+    field: "paymentType",
+    headerName: "ID",
+    width: 70,
+    hide: true
+  },
+  {
+    field: "paymentMethod",
+    headerName: "Method",
+    width: 100,
+    flex: 1,
+    renderCell: (param) => iconMapping(param.row.paymentMethod)
+  },
+  {
+    field: "totalRevenue",
+    headerName: "Revenue",
+    width: 230,
+    flex: 1
+  },
+  {
+    field: "benefit",
+    headerName: "Benefit",
+    width: 230,
+    flex: 1
+  },
+  {
+    field: "collect",
+    headerName: "Collect",
+    width: 100,
+    flex: 1
+  },
+  {
+    field: "pay",
+    headerName: "Pay",
+    width: 100,
+    flex: 1
+  },
+  {
+    field: "balance",
+    headerName: "Balance",
+    width: 100,
+    flex: 1,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${statusClassMapping(params.row.balance > 0 ? "Active" : "Inactive")}`}>
+          {params.row.balance}
         </div>
       );
     }

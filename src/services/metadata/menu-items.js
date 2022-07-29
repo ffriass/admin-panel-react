@@ -91,7 +91,7 @@ export const menuItems = [
       },
       {
         title: "Notifications",
-        link: "/stats",
+        link: "/notifications",
         materialIconTag: "notifications",
         icon: <NotificationsIcon className="icon" />,
         tag: "bh-notifications-list",

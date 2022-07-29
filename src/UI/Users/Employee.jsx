@@ -1,39 +1,41 @@
-import React from 'react'
-import "../../../components/datatable/datatable.scss";
+import React, { useState, useEffect } from "react";
+import "../../components/datatable/datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { userColumns } from "../../../datatable-source";
+import { statusClassMapping, userColumns } from "../../services/metadata/datatable-definitions";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import { useState, useEffect } from "react";
-import { getUsers } from "../../../services/api/actions";
-import useFetch from "../../../core/hooks/useFetch";
+import { getUsers } from "../../services/api/actions";
+import useFetch from "../../core/hooks/useFetch";
 
-const Agent = (props) => {
+const Employee = () => {
   const [pageSize] = useState(10);
-  const [response, callback, isloading] = useFetch(getUsers("agents", 0, pageSize))
+  const [response, callback, isloading] = useFetch(
+    getUsers("employees", 0, pageSize)
+  );
   const [data, setData] = useState(response?.payload?.data);
-  const [rowCountState, setRowCountState] = useState(response?.payload?.rowCount || 0 );
-
+  const [rowCountState, setRowCountState] = useState(
+    response?.payload?.rowCount || 0
+  );
 
   const handleDelete = (id) => {
     //setData(data.filter((item) => item.id !== id));
   };
 
-  const handlePageChange = (newPage) => {    
-    callback(getUsers("agents", newPage, pageSize), result => {      
+  const handlePageChange = (newPage) => {
+    callback(getUsers("employees", newPage, pageSize), (result) => {
       setData(result.data);
     });
   };
 
   const actionColumn = [
     {
-      field: "status",
+      field: "statusName",
       headerName: "Status",
       width: 160,
       renderCell: (params) => {
         return (
-          <div className={`cellWithStatus ${params.row.status == 2 ? 'active' : !params.row.status ? 'pending': 'inactive'}`}>
-            {params.row.status == 2 ? 'Aprobado' : !params.row.status ? 'Pendiente' : 'Rechazado' }
+          <div className={`cellWithStatus ${ statusClassMapping(params.row.isActive ? params.row.statusName : "Inactive")}`} >
+            { params.row.isActive && params.row.statusName == "Unknown" ? "Pending" : !params.row.isActive ? "Inactive": params.row.statusName }
           </div>
         );
       }
@@ -50,9 +52,12 @@ const Agent = (props) => {
               <div className="viewButton">View</div>
             </Link>
             <Link to={`/users/${params.row.id}/edit`} className="link">
-              <div className="editButton">Edit</div>
+              <div className="neutralButton">Edit</div>
             </Link>
-            <div className="deleteButton" onClick={() => handleDelete(params.row.id)} >
+            <div
+              className="inactiveButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
               Delete
             </div>
           </div>
@@ -62,19 +67,18 @@ const Agent = (props) => {
   ];
 
   useEffect(() => {
-
     setData(response?.payload?.data);
     setRowCountState((prevRowCountState) =>
-    response?.payload?.rowCount !== undefined
+      response?.payload?.rowCount !== undefined
         ? response?.payload?.rowCount
-        : prevRowCountState,
+        : prevRowCountState
     );
-  }, [response?.payload?.rowCount , setRowCountState]);
+  }, [response?.payload?.rowCount, setRowCountState]);
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <div>Agents</div>
+        <div>Employees</div>
         <Link to="/users/new" className="link">
           <AddIcon />
         </Link>
@@ -84,10 +88,10 @@ const Agent = (props) => {
         rows={data || []}
         columns={userColumns.concat(actionColumn)}
         pageSize={pageSize}
-        rowCount = {rowCountState}
+        rowCount={rowCountState}
         loading={isloading}
         autoHeight
-        paginationMode='server'
+        paginationMode="server"
         onPageChange={handlePageChange}
         // checkboxSelection
         components={{ Toolbar: GridToolbar }}
@@ -96,4 +100,4 @@ const Agent = (props) => {
   );
 };
 
-export default Agent;
+export default Employee;

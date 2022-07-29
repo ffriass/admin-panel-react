@@ -1,17 +1,17 @@
 import React from "react";
 import "../datatable/datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { transactionsColumns } from "../../datatable-source";
+import { transactionsColumns } from "../../services/metadata/datatable-definitions";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useState, useEffect } from "react";
-import {  getTransactions } from "../../services/api/actions";
+import {  getTransactions, getTransactionsByUserId } from "../../services/api/actions";
 import useFetch from "../../core/hooks/useFetch";
 
-const Transactions = ({ transactions = [] }) => {
+const Transactions = ({ userId = null }) => {
   const [pageSize] = useState(10);
-  const [response, callback, isloading] = useFetch(
-    getTransactions(0, pageSize)
+  const [response, callback, isloading] = useFetch( !userId ?
+    getTransactions(0, pageSize) : getTransactionsByUserId(userId, 0, pageSize)
   );
   const [data, setData] = useState(response?.payload?.data);
   const [rowCountState, setRowCountState] = useState(
@@ -19,7 +19,8 @@ const Transactions = ({ transactions = [] }) => {
   );
 
   const handlePageChange = (newPage) => {
-    callback(getTransactions(newPage, pageSize), (result) => {
+    callback(userId ?
+      getTransactions(newPage, pageSize) : getTransactionsByUserId(userId, newPage, pageSize), (result) => {
       setData(result.data);
     });
   };

@@ -1,22 +1,19 @@
-import React from 'react'
-import "../../../components/datatable/datatable.scss";
+import React, { useState, useEffect } from "react";
+import "../../components/datatable/datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { userColumns } from "../../../datatable-source";
+import { statusClassMapping, userColumns } from "../../services/metadata/datatable-definitions";
 import { Link } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
-import { useState, useEffect } from "react";
-import { getUsers } from "../../../services/api/actions";
-import useFetch from "../../../core/hooks/useFetch";
+import { getUsers } from "../../services/api/actions";
+import useFetch from "../../core/hooks/useFetch";
 
 const Customer = (props) => {
   const [pageSize] = useState(10);
   const [response, callback, isloading] = useFetch(getUsers("customers", 0, pageSize))
   const [data, setData] = useState(response?.payload?.data);
-  //const [page, setPage] = useState(0);  
   const [rowCountState, setRowCountState] = useState(response?.payload?.rowCount || 0 );
 
 
-  const handleDelete = (id) => {
+  const handleActivation = (email, status) => {
     //setData(data.filter((item) => item.id !== id));
   };
 
@@ -33,8 +30,8 @@ const Customer = (props) => {
       width: 160,
       renderCell: (params) => {
         return (
-          <div className={`cellWithStatus ${params.row.isActive ? 'active' : 'pending'}`}>
-            {params.row.isActive ? 'Activo' : 'Pendiente' }
+          <div className={`cellWithStatus ${ statusClassMapping(params.row.isActive ? "Active" : "Inactive")}`} >
+            { params.row.isActive ? "Active" : "Inactive" }
           </div>
         );
       }
@@ -50,11 +47,8 @@ const Customer = (props) => {
             <Link to={`/users/${params.row.id}`} className="link">
               <div className="viewButton">View</div>
             </Link>
-            {/* <Link to={`/users/${params.row.id}/edit`} className="link">
-              <div className="editButton">Edit</div>
-            </Link> */}
-            <div className="deleteButton" onClick={() => handleDelete(params.row.id)} >
-              Inactivate
+            <div className={`${params.row.isActive ? "inactiveButton" : "activeButton"}`} onClick={() => handleActivation(params.row.email,  params.row.isActive)} >
+              { params.row.isActive ? "Inactivate" : "Activate"}
             </div>
           </div>
         );
@@ -75,10 +69,7 @@ const Customer = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <div>Agents</div>
-        <Link to="/users/new" className="link">
-          <AddIcon />
-        </Link>
+        <div>Customers</div>
       </div>
       <DataGrid
         className="datagrid"

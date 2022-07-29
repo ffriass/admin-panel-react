@@ -5,7 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Widget from "../../components/widgets/Widget";
 import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
-import Transactions from "../../components/table/Table";
+import Transactions from "../../components/table/Transactions";
 import Grid from "@mui/material/Grid";
 import { Box, Container, Stack } from "@mui/material";
 import Layout from "../../components/layout/Layout";
