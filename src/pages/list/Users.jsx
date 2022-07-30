@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import Layout from "../../components/layout/Layout";
-import DataTable from "../../components/datatable/DataTable";
 import TabPanel from "../../components/tab/TabPanel";
 import { Person, PersonPinCircleOutlined } from "@mui/icons-material";
 import Employee from "../../UI/Users/Employee";
@@ -27,11 +25,11 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: "100%" }}>
       <Box
-        style={{ backgroundColor: "gray", position: "fixed", width: "90%" }}
+        style={{ backgroundColor: "white", position: "relative", width: "100%" }}
         sx={{ borderBottom: 1, borderColor: "divider" }}
       >
         <Tabs
-          style={{ backgroundColor: "whitesmoke" }}
+          style={{ backgroundColor: "white" }}
           value={value}
           onChange={handleChange}
           variant="fullWidth"

@@ -1,7 +1,6 @@
-
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-import PayPalIcon from '../../components/icons/PayPal';
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
+import PayPalIcon from "../../components/icons/PayPal";
 
 export const statusClassMapping = (status) => {
   switch (status) {
@@ -32,19 +31,18 @@ export const statusClassMapping = (status) => {
   }
 };
 
-const iconMapping = (value) =>{
+const iconMapping = (value) => {
   switch (value) {
     case "CreditCard":
-      return <CreditCardIcon/>
+      return <CreditCardIcon />;
     case "Cash":
-      return <LocalAtmIcon style={{color:'green'}}/>
+      return <LocalAtmIcon style={{ color: "green" }} />;
     case "PayPal":
-      return <PayPalIcon/>
+      return <PayPalIcon />;
 
     default:
       return <h6>{value}</h6>;
   }
-
 };
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -88,7 +86,6 @@ export const userColumns = [
   // }
 ];
 
-
 export const productColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -108,17 +105,18 @@ export const productColumns = [
     field: "description",
     headerName: "Description",
     width: 230,
-    flex: 2
+    flex: 1
   },
   {
     field: "durationInMinutes",
     headerName: "Duration",
-    width: 100
+    width: 100,
+    flex: 1
   },
   {
     field: "details",
     headerName: "Status",
-    width: 160,
+    width: 160, flex: 1,
     renderCell: (params) => {
       return (
         <div
@@ -227,7 +225,9 @@ export const transactionsColumns = [
     flex: 1,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${ statusClassMapping(params.row.status)}`}>
+        <div
+          className={`cellWithStatus ${statusClassMapping(params.row.status)}`}
+        >
           {params.row.status}
         </div>
       );
@@ -240,7 +240,11 @@ export const transactionsColumns = [
     flex: 1,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${statusClassMapping(params.row.invoice ?? "NotFound")}`}>
+        <div
+          className={`cellWithStatus ${statusClassMapping(
+            params.row.invoice ?? "NotFound"
+          )}`}
+        >
           {params.row.invoice ?? "NotFound"}
         </div>
       );
@@ -248,7 +252,7 @@ export const transactionsColumns = [
   }
 ];
 
-export const balanceColumns = [ 
+export const balanceColumns = [
   {
     field: "paymentType",
     headerName: "ID",
@@ -293,7 +297,11 @@ export const balanceColumns = [
     flex: 1,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${statusClassMapping(params.row.balance > 0 ? "Active" : "Inactive")}`}>
+        <div
+          className={`cellWithStatus ${statusClassMapping(
+            params.row.balance > 0 ? "Active" : "Inactive"
+          )}`}
+        >
           {params.row.balance}
         </div>
       );

@@ -20,9 +20,11 @@ export const Body = styled.section`
 `;
 
 export const PageContent = styled.div`
-    display: flex;   
+    display: flex;
 `;
-export const MainContainer = styled.div`
+export const MainContainer = styled.div`  
     margin-top: 60px;
     width:100%;
+    padding-left: 2%;
+    padding-right: 2%;
 `;

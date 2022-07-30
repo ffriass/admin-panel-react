@@ -8,10 +8,11 @@ import { useState, useEffect } from "react";
 import {  getTransactions, getTransactionsByUserId } from "../../services/api/actions";
 import useFetch from "../../core/hooks/useFetch";
 
-const Transactions = ({ userId = null }) => {
+const Transactions = ({ userId = null, getCompleted = false }) => {
   const [pageSize] = useState(10);
+  const [completed, setCompleted] = useState(getCompleted);
   const [response, callback, isloading] = useFetch( !userId ?
-    getTransactions(0, pageSize) : getTransactionsByUserId(userId, 0, pageSize)
+    getTransactions(completed, 0, pageSize) : getTransactionsByUserId(completed, userId, 0, pageSize)
   );
   const [data, setData] = useState(response?.payload?.data);
   const [rowCountState, setRowCountState] = useState(
@@ -19,8 +20,8 @@ const Transactions = ({ userId = null }) => {
   );
 
   const handlePageChange = (newPage) => {
-    callback(userId ?
-      getTransactions(newPage, pageSize) : getTransactionsByUserId(userId, newPage, pageSize), (result) => {
+    callback(!userId ?
+      getTransactions(completed, newPage, pageSize) : getTransactionsByUserId(completed, userId, newPage, pageSize), (result) => {
       setData(result.data);
     });
   };

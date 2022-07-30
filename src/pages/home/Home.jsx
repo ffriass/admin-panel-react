@@ -16,7 +16,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import { getGroupedUsersCount } from "../../services/api/actions";
+import { getGroupedUsersCount, getOrdersCount } from "../../services/api/actions";
 
 const extractWidgetData = (type, data) => {
   let extractedData ={};
@@ -24,9 +24,9 @@ const extractWidgetData = (type, data) => {
     case "agents":
       extractedData = {
         ...data?.Outsourcing,
-        title: "AGENTS",
+        title: "AGENTES",
         isMoney: false,
-        link: "See all agents",
+        link: "Ver agentes",
         icon: (
           <PersonIcon
             className="icon"
@@ -38,12 +38,12 @@ const extractWidgetData = (type, data) => {
         )
       };
       break;
-    case "order":
+    case "employees":
       extractedData = {
-        ...data?.Outsourcing, //TODO: chnage later
-        title: "ORDERS",
+        ...data?.Employee, //TODO: chnage later
+        title: "EMPLEADOS",
         isMoney: false,
-        link: "View all orders",
+        link: "Ver empleados",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -58,9 +58,9 @@ const extractWidgetData = (type, data) => {
     case "customers":
       extractedData = {
         ...data?.Customer,
-        title: "CUSTOMERS",
-        isMoney: true,
-        link: "View all customers",
+        title: "CLIENTES",
+        isMoney: false,
+        link: "Ver clientes",
         icon: (
           <PersonIcon
             className="icon"
@@ -69,12 +69,12 @@ const extractWidgetData = (type, data) => {
         )
       };
       break;
-    case "balance":
+    case "orders":
       extractedData = {
-        ...data?.Outsourcing,//TODO: chnages later
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
+        ...data?.Orders,//TODO: chnages later
+        title: "ORDENES",
+        isMoney: false,
+        link: "ver ordenes",
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"
@@ -95,23 +95,24 @@ const extractWidgetData = (type, data) => {
 const Home = () => {
   const appContext = useContext(AppContext);
   const [usersCountResponse, usersCountCallback, usersCountIsLoading] = useFetch(getGroupedUsersCount())
+  const [ordersCountResponse, ordersCountCallback, ordersCountIsLoading] = useFetch(getOrdersCount())
   //const [transResponse, transCallback, transCountIsLoading] = useFetch(getTransactions(0, 2))
-
+  console.log("userCount",usersCountResponse)
   return (
     <Layout>
       <div className="homeContainer">
         <Grid container className="widgets">
-          <Widget isLoading={usersCountIsLoading} data={extractWidgetData("agents", usersCountResponse?.payload?.data)} />
-          <Widget isLoading={false} data={extractWidgetData("order", usersCountResponse?.payload?.data)} />
           <Widget isLoading={usersCountIsLoading} data={extractWidgetData("customers", usersCountResponse?.payload?.data)} />
-          <Widget isLoading={false} data={extractWidgetData("balance", usersCountResponse?.payload?.data)} />
+          <Widget isLoading={usersCountIsLoading} data={extractWidgetData("agents", usersCountResponse?.payload?.data)} />
+          <Widget isLoading={usersCountIsLoading} data={extractWidgetData("employees", usersCountResponse?.payload?.data)} />
+          <Widget isLoading={ordersCountIsLoading} data={extractWidgetData("orders", ordersCountResponse?.payload?.data)} />
         </Grid>
         <Grid container className="charts">
-          <Grid xs={12} md={5}>
+          <Grid item xs={12} md={5}>
             <Featured />
           </Grid>
-          <Grid xs={12} md={7}>
-            <Chart title="Last 6 months Revenue" aspect={2 / 1} />
+          <Grid item xs={12} md={7}>
+            <Chart aspect={2 / 1} />
           </Grid>
         </Grid>
         <div className="listContainer">

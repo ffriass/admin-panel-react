@@ -38,7 +38,7 @@ const AgentDetail = () => {
       </div>
       <div className="bottom">
         <h1 className="title">Services attended by { <strong>{response?.payload?.data?.agentName}</strong> ?? "this agent"}</h1>
-        <Transactions userId={userId} />
+        <Transactions getCompleted={true} userId={userId} />
       </div>
     </div>
   );

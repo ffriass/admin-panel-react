@@ -21,7 +21,7 @@ const Orders = () => {
   return (
     <div>
       <Grid container>
-        <Grid xs={12} md={5}>
+        <Grid sm={12} md={12} lg={5} className="box-shadow" style={{marginBottom:5}}>
           {/* <div className="userFinantialDetailTitle">
             <label>Current balance detail</label>
           </div> */}
@@ -40,13 +40,13 @@ const Orders = () => {
           </FormGroup>
           <Balance pending={showPending} />
         </Grid>
-        <Grid s={12} md={7} style={{}}>
-          <Chart aspect={4 / 1} title="Global revenue ( Last 6 Months)" />
+        <Grid md={12} lg={7}>
+          <Chart aspect={3 / 1} />
         </Grid>
       </Grid>
-      <div className="bottom">
-        <h5 className="title">All Transactions</h5>
-        <Transactions/>
+      <div className="bottom box-shadow">
+        <h5 className="title">Todas las ordenes</h5>
+        <Transactions getCompleted={true}/>
       </div>
     </div>
   );

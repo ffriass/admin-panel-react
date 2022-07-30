@@ -13,6 +13,12 @@ export const getGroupedUsersCount = (period = null, showGlobalLoading = false) =
   return options;
 };
 
+export const getOrdersCount = (period = null, showGlobalLoading = false) => {
+
+  const options = getApiOptions(`home/orders-count`, actionKeys.GET_ORDERS_COUNT, showGlobalLoading);
+  return options;
+};
+
 export const getUsers = (userType, page = 0, pageSize = 10, showGlobalLoading = false) => {
 
   const options = getApiOptions(`users/${userType}?page=${page}&pageSize=${pageSize}`, actionKeys.GET_USERS, showGlobalLoading);
@@ -24,15 +30,15 @@ export const getAgentAvailabilityById = (id, showGlobalLoading = false) => {
   return options;
 }
 
-export const getTransactions = (page = 0, pageSize = 10, showGlobalLoading = false) => {
+export const getTransactions = (completed, page = 0, pageSize = 10, showGlobalLoading = false) => {
 
-  const options = getApiOptions(`home/transactions?page=${page}&pageSize=${pageSize}`, actionKeys.GET_TRANSACTIONS, showGlobalLoading);
+  const options = getApiOptions(`home/transactions?completed=${!!completed}&page=${page}&pageSize=${pageSize}`, actionKeys.GET_TRANSACTIONS, showGlobalLoading);
   return options;
 }
 
-export const getTransactionsByUserId = (userId, page = 0, pageSize = 10, showGlobalLoading = false) => {
+export const getTransactionsByUserId = (completed, userId, page = 0, pageSize = 10, showGlobalLoading = false) => {
 
-  const options = getApiOptions(`home/transactions/${userId}?page=${page}&pageSize=${pageSize}`, actionKeys.GET_TRANSACTIONS_BY_USER, showGlobalLoading);
+  const options = getApiOptions(`home/transactions/${userId}?completed=${!!completed}&page=${page}&pageSize=${pageSize}`, actionKeys.GET_TRANSACTIONS_BY_USER, showGlobalLoading);
   return options;
 }
 
@@ -46,6 +52,12 @@ export const getBalanceDetail = (pending = false, showGlobalLoading = false) => 
 export const getAgentBalanceDetail = (agentId, showGlobalLoading = false) => {
 
   const options = getApiOptions(`financial/balance/pending-agent?agentId=${agentId}`, actionKeys.GET_AGENT_BALANCE_DETAIL, showGlobalLoading);
+  return options;
+};
+
+export const getRevenuesByPeriod = (period = "Monthly", showGlobalLoading = false) => {
+
+  const options = getApiOptions(`financial/revenue/${period}`, actionKeys.GET_REVENUE_BY_PERIOD, showGlobalLoading);
   return options;
 };
 //POST

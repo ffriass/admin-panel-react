@@ -49,7 +49,7 @@ const Products = () => {
               <div className="viewButton">View</div>
             </Link>
             <div
-              className="editButton"
+              className="neutralButton"
               onClick={() => handleDelete(params.row.id)}
             >
               Edit
@@ -72,7 +72,7 @@ const Products = () => {
 
   return (
     <Grid container className="charts">
-      <Grid xs={12} md={8}>
+      <Grid md={12} lg={7}>
         <div className="datatable">
           <div className="datatableTitle">
             <div>Services</div>
@@ -99,7 +99,7 @@ const Products = () => {
           />
         </div>
       </Grid>
-      <Grid xs={12} md={4}>
+      <Grid md={12} lg={5}>
         <div className="datatable">
           <div className="datatableTitle">
             <div>Details</div>
