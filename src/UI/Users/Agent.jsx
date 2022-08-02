@@ -26,11 +26,11 @@ const Agent = (props) => {
 
   const handleApproval = (email, status) => {  
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to do this.',
+      title: 'Confirmar',
+      message: 'Estas seguro de enviar el cambio?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Si',
           onClick: () => { actionCallback(
             setAgentStatus({ email: email, approved: status != "Approved" }, true),
             (result) => {
@@ -75,9 +75,9 @@ const Agent = (props) => {
             )}`}
           >
             {params.row.isActive && params.row.statusName == "Unknown"
-              ? "Pending"
+              ? "Pendiente"
               : !params.row.isActive
-              ? "Inactive"
+              ? "Inactivo"
               : params.row.statusName}
           </div>
         );
@@ -96,10 +96,10 @@ const Agent = (props) => {
               state={params.row}
               className="link"
             >
-              <div className="viewButton">View</div>
+              <div className="viewButton">Ver</div>
             </Link>
             <Link to={`/users/${params.row.id}/edit`} className="link">
-              <div className="neutralButton">Edit</div>
+              <div className="neutralButton">Editar</div>
             </Link>
             <div
               className={
@@ -111,7 +111,7 @@ const Agent = (props) => {
                 handleApproval(params.row.email, params.row.statusName)
               }
             >
-              {params.row.statusName == "Approved" ? "Disapprove" : "Approve"}
+              {params.row.statusName == "Approved" ? "Desaprobar" : "Aprobar"}
             </div>
           </div>
         );
@@ -131,7 +131,7 @@ const Agent = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <div>Agents</div>
+        <div>Agentes</div>
         <Link to="/users/new" className="link">
           <AddIcon />
         </Link>

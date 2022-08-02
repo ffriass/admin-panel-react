@@ -1,5 +1,9 @@
 import React from 'react'
 import './new.scss'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate, Link } from "react-router-dom";
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import useFetch from "../../core/hooks/useFetch";
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
@@ -28,7 +32,41 @@ const New = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form>
+            <ValidatorForm>
+              
+            <div className="form-group mt-3">
+            {/* <label>Email address</label> */}
+            <div className="formInput">
+                <label htmlFor="file">
+                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  style={{ display: "none" }}
+                />
+              </div>
+              {inputs.map((input) => (
+                <TextValidator
+                    className="form-control mt-3"
+                    variant="outlined"
+                    size="small"
+                    label={input.label}
+                    placeholder={input.placeholder}
+                    // onChange={handleChange}
+                    type={input.type}
+                    name="email"
+                    // value={userInfo.email}
+                    validators={["required", "isEmail"]}
+                    errorMessages={["this field is required", "email is not valid"]}
+              />
+              ))}            
+              <button  type="submit" className="btn btn-primary">Guardar</button>
+            
+          </div>
+            </ValidatorForm>
+            {/* <form>
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -48,7 +86,7 @@ const New = ({ inputs, title }) => {
                 </div>
               ))}
               <button>Send</button>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>

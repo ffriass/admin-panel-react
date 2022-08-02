@@ -76,7 +76,7 @@ const Products = () => {
         <div className="datatable">
           <div className="datatableTitle">
             <h6>Servicios</h6>
-            <Link to="/product/new" className="link">
+            <Link to="/products/new" className="link">
               <AddIcon />
             </Link>
           </div>

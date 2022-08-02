@@ -40,7 +40,7 @@ function App() {
                   <Route path=":userId" element={<Single />} />
                   <Route
                     path="new"
-                    element={<New inputs={userInputs} title="Add new User" />}
+                    element={<New inputs={userInputs} title="Agregar nuevo usario" />}
                   />
                 </Route>
                 <Route path="orders">
@@ -48,7 +48,7 @@ function App() {
                   <Route path=":orderId" element={<Single />} />
                   <Route
                     path="new"
-                    element={<New inputs={userInputs} title="Add new Order" />}
+                    // element={<New inputs={userInputs} title="Add new Order" />}
                   />
                 </Route>
                 <Route path="products">
@@ -57,7 +57,7 @@ function App() {
                   <Route
                     path="new"
                     element={
-                      <New inputs={productInputs} title="Add new Product" />
+                      <New inputs={productInputs} title="nuevo producto" />
                     }
                   />
                 </Route>
