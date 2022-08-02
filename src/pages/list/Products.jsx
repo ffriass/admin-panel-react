@@ -39,7 +39,7 @@ const Products = () => {
   const actionColumn = [
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Opcion",
       width: 200,
       flex: 1,
       renderCell: (params) => {

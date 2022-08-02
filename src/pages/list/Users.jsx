@@ -35,9 +35,9 @@ export default function BasicTabs() {
           variant="fullWidth"
           centered
         >
-          <Tab label="Agents" {...a11yProps(0)} />
-          <Tab label="Employees" {...a11yProps(1)} />
-          <Tab label="Customers" {...a11yProps(2)} />
+          <Tab label="Agentes" {...a11yProps(0)} />
+          <Tab label="Empleados" {...a11yProps(1)} />
+          <Tab label="Clientes" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

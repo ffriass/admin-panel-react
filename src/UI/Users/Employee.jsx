@@ -42,23 +42,23 @@ const Employee = () => {
     },
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Opcion",
       width: 250,
       flex: 1,
       renderCell: (params) => {
         return (
           <div className="cellAction">
             <Link to={`/users/${params.row.id}`} className="link">
-              <div className="viewButton">View</div>
+              <div className="viewButton">Ver</div>
             </Link>
             <Link to={`/users/${params.row.id}/edit`} className="link">
-              <div className="neutralButton">Edit</div>
+              <div className="neutralButton">Editar</div>
             </Link>
             <div
               className="inactiveButton"
               onClick={() => handleDelete(params.row.id)}
             >
-              Delete
+              Borrar
             </div>
           </div>
         );
@@ -78,7 +78,7 @@ const Employee = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <div>Employees</div>
+        <div>Empleados</div>
         <Link to="/users/new" className="link">
           <AddIcon />
         </Link>

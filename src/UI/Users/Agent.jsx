@@ -85,7 +85,7 @@ const Agent = (props) => {
     },
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Opcion",
       width: 250,
       flex: 1,
       renderCell: (params) => {

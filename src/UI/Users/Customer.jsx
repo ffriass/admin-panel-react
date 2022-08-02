@@ -38,17 +38,17 @@ const Customer = (props) => {
     },
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Opcion",
       width: 250,
       flex: 1,
       renderCell: (params) => {
         return (
           <div className="cellAction">
             <Link to={`/users/${params.row.id}`} className="link">
-              <div className="viewButton">View</div>
+              <div className="viewButton">Ver</div>
             </Link>
             <div className={`${params.row.isActive ? "inactiveButton" : "activeButton"}`} onClick={() => handleActivation(params.row.email,  params.row.isActive)} >
-              { params.row.isActive ? "Inactivate" : "Activate"}
+              { params.row.isActive ? "Inactivar" : "Activar"}
             </div>
           </div>
         );
@@ -69,7 +69,7 @@ const Customer = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <div>Customers</div>
+        <div>Clientes</div>
       </div>
       <DataGrid
         className="datagrid"
