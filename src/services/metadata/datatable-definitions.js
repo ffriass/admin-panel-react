@@ -2,6 +2,17 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import PayPalIcon from "../../components/icons/PayPal";
 
+export const dateFormat = {hour:"2-digit", minute: "2-digit", hour12: false };
+export const dateOnlyFormat = { hour12: false };
+export const moneyFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0
+
+  // These options are needed to round to whole numbers if that's what you want.
+  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+});
 export const statusClassMapping = (status) => {
   switch (status) {
     case "Approved":
@@ -48,7 +59,7 @@ export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
     field: "name",
-    headerName: "Name",
+    headerName: "Nombre",
     width: 230,
     flex: 1,
     renderCell: (params) => {
@@ -69,7 +80,7 @@ export const userColumns = [
 
   {
     field: "phoneNumber",
-    headerName: "Phone",
+    headerName: "Telefono",
     width: 230
   }
   // {
@@ -90,7 +101,7 @@ export const productColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
     field: "name",
-    headerName: "Name",
+    headerName: "Nombre",
     width: 150
     // renderCell: (params) => {
     //   return (
@@ -103,13 +114,13 @@ export const productColumns = [
   },
   {
     field: "description",
-    headerName: "Description",
+    headerName: "Descripcion",
     width: 230,
     flex: 1
   },
   {
     field: "durationInMinutes",
-    headerName: "Duration",
+    headerName: "Duracion",
     width: 100,
     flex: 1
   },
@@ -139,28 +150,21 @@ export const productDetailColumns = [
   },
   {
     field: "price",
-    headerName: "Price",
+    headerName: "Precio",
     width: 150,
     ype: "money",
-    flex: 1
-    // renderCell: (params) => {
-    //   return (
-    //     <div className="cellWithImg">
-    //       <img className="cellImg" src={params.row.img} alt="avatar" />
-    //       {params.row.username}
-    //     </div>
-    //   );
-    // }
+    flex: 1,
+    renderCell: (param) => moneyFormatter.format(param.row.price)
   },
   {
     field: "initialTime",
-    headerName: "Start",
+    headerName: "Inicio",
     width: 230,
     flex: 1
   },
   {
     field: "finalTime",
-    headerName: "End",
+    headerName: "Fin",
     width: 100,
     flex: 1
   }
@@ -175,7 +179,7 @@ export const transactionsColumns = [
   },
   {
     field: "topService",
-    headerName: "Service",
+    headerName: "Servicio",
     width: 150,
     flex: 1
     // renderCell: (params) => {
@@ -189,31 +193,33 @@ export const transactionsColumns = [
   },
   {
     field: "date",
-    headerName: "Date",
+    headerName: "Fecha",
     width: 230,
-    flex: 1
+    flex: 1,
+    renderCell: (param) => new Date(param.row.date).toLocaleDateString("en-US", dateFormat)
   },
   {
     field: "customer",
-    headerName: "Customer",
+    headerName: "Cliente",
     width: 100,
     flex: 1
   },
   {
     field: "agent",
-    headerName: "Agent",
+    headerName: "Agente",
     width: 100,
     flex: 1
   },
   {
     field: "amount",
-    headerName: "Amount",
+    headerName: "Monto",
     width: 100,
-    flex: 1
+    flex: 1,
+    renderCell: (param) => moneyFormatter.format(param.row.amount)
   },
   {
     field: "paymentMethod",
-    headerName: "Method",
+    headerName: "Metodo",
     width: 100,
     flex: 1,
     renderCell: (param) => iconMapping(param.row.paymentMethod)
@@ -235,7 +241,7 @@ export const transactionsColumns = [
   },
   {
     field: "invoice",
-    headerName: "Invoice",
+    headerName: "Recibo",
     width: 100,
     flex: 1,
     renderCell: (params) => {
@@ -261,34 +267,39 @@ export const balanceColumns = [
   },
   {
     field: "paymentMethod",
-    headerName: "Method",
-    width: 100,
-    flex: 1,
+    headerName: "Metodo",
+    width: 70,
+    flex: 0.6,
     renderCell: (param) => iconMapping(param.row.paymentMethod)
   },
   {
     field: "totalRevenue",
-    headerName: "Revenue",
+    headerName: "Ingreso",
     width: 230,
-    flex: 1
+    flex: 1,
+    renderCell: (param) => moneyFormatter.format(param.row.totalRevenue)
+    
   },
   {
     field: "benefit",
-    headerName: "Benefit",
+    headerName: "Ganancia",
     width: 230,
-    flex: 1
+    flex: 1,
+    renderCell: (param) => moneyFormatter.format(param.row.benefit)
   },
   {
     field: "collect",
-    headerName: "Collect",
+    headerName: "Cobrar",
     width: 100,
-    flex: 1
+    flex: 1,
+    renderCell: (param) => moneyFormatter.format(param.row.collect)
   },
   {
     field: "pay",
-    headerName: "Pay",
+    headerName: "Pagar",
     width: 100,
-    flex: 1
+    flex: 1,
+    renderCell: (param) => moneyFormatter.format(param.row.pay)
   },
   {
     field: "balance",
@@ -302,7 +313,7 @@ export const balanceColumns = [
             params.row.balance > 0 ? "Active" : "Inactive"
           )}`}
         >
-          {params.row.balance}
+          {moneyFormatter.format(params.row.balance)}
         </div>
       );
     }

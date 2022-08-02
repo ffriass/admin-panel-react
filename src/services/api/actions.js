@@ -19,6 +19,13 @@ export const getOrdersCount = (period = null, showGlobalLoading = false) => {
   return options;
 };
 
+export const getComparativeRevenues = (date = null, showGlobalLoading = false) => {
+
+  var query = !!date ? `?date=${date}` : "";
+  const options = getApiOptions(`home/comparative-revenues${query}`, actionKeys.GET_COMPARATIVE_REVENUES, showGlobalLoading);
+  return options;
+};
+
 export const getUsers = (userType, page = 0, pageSize = 10, showGlobalLoading = false) => {
 
   const options = getApiOptions(`users/${userType}?page=${page}&pageSize=${pageSize}`, actionKeys.GET_USERS, showGlobalLoading);

@@ -116,7 +116,7 @@ const Home = () => {
           </Grid>
         </Grid>
         <div className="listContainer">
-          <div className="listTitle">Lastest Transactions</div>
+          <div className="listTitle">Ultimas transacciones</div>
           <Transactions />
         </div>
       </div>

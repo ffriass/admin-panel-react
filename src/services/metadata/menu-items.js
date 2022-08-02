@@ -32,7 +32,7 @@ export const menuItems = [
     ]
   },
   {
-    title: "LIST",
+    title: "LISTAS",
     link: null,
     basePath: null,
     materialIconTag: null,
@@ -40,7 +40,7 @@ export const menuItems = [
     visible: true, //UserHasAccessToPage(PAGES.CUSTOMERS),
     subItems: [
       {
-        title: "Users",
+        title: "Usuarios",
         link: "/users",
         materialIconTag: "person",
         icon: <PersonIcon className="icon" />,
@@ -48,7 +48,7 @@ export const menuItems = [
         visible: true
       },
       {
-        title: "Products",
+        title: "Productos",
         link: "/products",
         materialIconTag: "store",
         icon: <StoreIcon className="icon" />,
@@ -56,7 +56,7 @@ export const menuItems = [
         visible: true
       },
       {
-        title: "Orders",
+        title: "Ordenes",
         link: "/orders",
         materialIconTag: "receip",
         icon: <ReceiptIcon className="icon" />,
@@ -74,7 +74,7 @@ export const menuItems = [
     ]
   },
   {
-    title: "USEFULL",
+    title: "UTILIDAD",
     link: null,
     basePath: null,
     materialIconTag: null,
@@ -90,7 +90,7 @@ export const menuItems = [
         visible: true
       },
       {
-        title: "Notifications",
+        title: "Notificaciones",
         link: "/notifications",
         materialIconTag: "notifications",
         icon: <NotificationsIcon className="icon" />,
@@ -100,7 +100,7 @@ export const menuItems = [
     ]
   },
   {
-    title: "OPTIONS",
+    title: "OPTIONES",
     link: null,
     basePath: null,
     materialIconTag: null,
@@ -108,7 +108,7 @@ export const menuItems = [
     visible: true, //UserHasAccessToPage(PAGES.CUSTOMERS),
     subItems: [
       {
-        title: "System Health",
+        title: "Sistema",
         link: "/health-check",
         materialIconTag: "monitorHeart",
         icon: <MonitorHeartIcon className="icon" />,
@@ -124,7 +124,7 @@ export const menuItems = [
         visible: true
       },
       {
-        title: "Settings",
+        title: "Configuracion",
         link: "/settings",
         materialIconTag: "settings.",
         icon: <SettingsIcon className="icon" />,

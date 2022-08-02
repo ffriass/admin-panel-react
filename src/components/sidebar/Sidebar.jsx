@@ -17,11 +17,11 @@ const Sidebar = () => {
   const logoutHandler = () => {
   
       confirmAlert({
-        title: 'Login out',
-        message: 'Do you want to continue?',
+        title: 'Cerrar Session',
+        message: 'Quieres cerrar session?',
         buttons: [
           {
-            label: 'Yes',
+            label: 'Si',
             onClick: () =>  authContext.logout()
           },
           {label: 'No' }
@@ -55,17 +55,17 @@ const Sidebar = () => {
                 ))}
             </>
           ))}
-          <div className="subtitle">USER</div>
+          <div className="subtitle">CUENTA</div>
           <NavLink to="/profile" className="sidebar-item">
             <li>
               <AccountCircleIcon className="icon" />
-              <span>Profile</span>
+              <span>Perfil</span>
             </li>
           </NavLink>
           <a onClick={logoutHandler} className="sidebar-item">
             <li>
               <LogoutIcon className="icon" />
-              <span>Logout</span>
+              <span>Salir</span>
             </li>
           </a>
         </ul>

@@ -72,10 +72,10 @@ const Products = () => {
 
   return (
     <Grid container className="charts">
-      <Grid md={12} lg={7}>
+      <Grid md={12} lg={8}>
         <div className="datatable">
           <div className="datatableTitle">
-            <div>Services</div>
+            <h6>Servicios</h6>
             <Link to="/product/new" className="link">
               <AddIcon />
             </Link>
@@ -99,10 +99,10 @@ const Products = () => {
           />
         </div>
       </Grid>
-      <Grid md={12} lg={5}>
+      <Grid md={12} lg={4}>
         <div className="datatable">
           <div className="datatableTitle">
-            <div>Details</div>
+            <h6>Detalle de Precios</h6>
             {/* <Link to="/product/new">
                 <AddIcon />
               </Link>
@@ -112,10 +112,10 @@ const Products = () => {
           </div>
           <div
             style={{
-              background: `${
+              color: `${
                 selectedDetail.length > 0
-                  ? "rgba(0, 128, 0, 0.363)"
-                  : "rgba(255, 0, 0, 0.05)"
+                  ? "green"
+                  : "red"
               }`,
               height: 40,
               display: "flex",
@@ -126,7 +126,7 @@ const Products = () => {
             {data?.find((x) => x.id == selectedServiceId)?.name}
           </div>
           <DataGrid
-            style={{ height: 565, width: "100%" }}
+            style={{ height: 568, width: "100%" }}
             className="datagrid"
             getRowHeight={() => 50}
             rows={selectedDetail || []}

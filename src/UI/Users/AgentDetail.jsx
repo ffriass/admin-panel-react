@@ -4,16 +4,21 @@ import { useParams, useLocation } from "react-router-dom";
 import UserInfoCard from "../../components/card/UserInfoCard";
 import { getAgentAvailabilityById } from "../../services/api/actions";
 import useFetch from "../../core/hooks/useFetch";
-import { Grid, Skeleton } from "@mui/material";
+import { FormControlLabel, Grid, Skeleton, Switch } from "@mui/material";
 import Balance from "../../components/table/Balance";
+import { useState } from "react";
 
 const AgentDetail = () => {
   const { userId, email } = useParams();
   const [response, callback, isloading] = useFetch(getAgentAvailabilityById(userId));
+  const [completed, setCompleted] = useState(true);
   const location = useLocation();
 
-  const handleFetch = () => {
-
+  const handleTransChange = (e) => {
+    console.log(e.target.value)
+    console.log(completed)
+    setCompleted(!completed)
+    console.log(completed)
     //loadServices(getServices());
   };
 
@@ -26,19 +31,28 @@ const AgentDetail = () => {
         </div>
         <div className="right">
           <Grid container className="userFinantialDetailTitle">
-            <label>Current balance detail</label>
+            <label>Detalle del balance actual</label>
           </Grid>
           <div>
             <Balance agentId={userId}/>
           </div>
           <Grid container className="userFinantialDetail">
-            <button className="finItem active">Mark as paid</button>
+            <button className="finItem active">Enviar pago</button>
           </Grid>
         </div>
       </div>
       <div className="bottom">
-        <h1 className="title">Services attended by { <strong>{response?.payload?.data?.agentName}</strong> ?? "this agent"}</h1>
-        <Transactions getCompleted={true} userId={userId} />
+        <div className="titleHeader">
+          <label className="titleItem text">Servicios atendidos por { <strong>{response?.payload?.data?.agentName}</strong> ?? " este usuario"}</label>
+          <FormControlLabel
+              className="titleItem"
+              control={<Switch onChange={handleTransChange} defaultChecked />}
+              label="Completadas"
+            />
+        </div>     
+        
+        <Transactions getCompleted={completed} userId={userId} /> 
+      
       </div>
     </div>
   );

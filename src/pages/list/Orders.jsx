@@ -1,11 +1,5 @@
 import React from "react";
 import "./list.scss";
-import DataTable from "../../components/datatable/DataTable";
-import Layout from "../../components/layout/Layout";
-import {
-  userColumns,
-  userRows
-} from "../../services/metadata/datatable-definitions";
 import Transactions from "../../components/table/Transactions";
 import { FormControlLabel, FormGroup, Grid, Switch } from "@mui/material";
 import Balance from "../../components/table/Balance";
@@ -21,19 +15,16 @@ const Orders = () => {
   return (
     <div>
       <Grid container>
-        <Grid sm={12} md={12} lg={5} className="box-shadow" style={{marginBottom:5}}>
-          {/* <div className="userFinantialDetailTitle">
-            <label>Current balance detail</label>
-          </div> */}
+        <Grid sm={12} md={12} lg={5} className="box-shadow" style={{marginBottom:5}}>        
           <FormGroup>
             <div className="userFinantialDetailTitle">
             <label className="finItem title">
-              Current {showPending ? "pending" : "global"} balance detail
+              Balance actual {showPending ? "pendiente" : "global"}
             </label>
             <FormControlLabel
               className="finItem"
               control={<Switch onChange={handleBalanceChange} defaultChecked />}
-              label="Pending"
+              label="Pendiente"
             />
             </div>
             {/* <FormControlLabel disabled control={<Switch />} label="Disabled" /> */}
