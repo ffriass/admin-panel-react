@@ -10,10 +10,14 @@ import { useState, useEffect } from "react";
 import { getUsers, setAgentStatus } from "../../services/api/actions";
 import useFetch from "../../core/hooks/useFetch";
 import AppContext from "../../core/store/app-context";
+import NewUserModal from "../../components/modal/NewUserModal";
+import { userInputs } from "../../services/metadata/form-source";
+import { Button } from "react-bootstrap";
 
 const Agent = (props) => {
   const [pageSize] = useState(10);
   const [page, setPage] = useState(0);
+  
   const [response, callback, isloading] = useFetch(
     getUsers("agents", page, pageSize)
   );
@@ -23,6 +27,7 @@ const Agent = (props) => {
     response?.payload?.rowCount || 0
   );
   const appContext = useContext(AppContext);
+  const [modalShow, setModalShow] = useState(false);
 
   const handleApproval = (email, status) => {  
     confirmAlert({
@@ -132,9 +137,9 @@ const Agent = (props) => {
     <div className="datatable">
       <div className="datatableTitle">
         <div>Agentes</div>
-        <Link to="/users/new" className="link">
+        <Button onClick={() => setModalShow(true)} >
           <AddIcon />
-        </Link>
+        </Button>
       </div>
       <DataGrid
         className="datagrid"
@@ -150,6 +155,12 @@ const Agent = (props) => {
         // checkboxSelection
         components={{ Toolbar: GridToolbar }}
       />
+      <NewUserModal
+      title="Registrar un nuevo Agent"
+      show={modalShow}
+      inputs={userInputs}
+      disabled={true}
+      onHide={() => setModalShow(false)}/>
     </div>
   );
 };

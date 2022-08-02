@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../../components/datatable/datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { statusClassMapping, userColumns } from "../../services/metadata/datatable-definitions";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import { getUsers } from "../../services/api/actions";
+import { getUsers, setAgentStatus } from "../../services/api/actions";
 import useFetch from "../../core/hooks/useFetch";
+import NewUserModal from "../../components/modal/NewUserModal";
+import { Button } from "react-bootstrap";
+import { userInputs } from "../../services/metadata/form-source";
+import { confirmAlert } from "react-confirm-alert";
+import AppContext from "../../core/store/app-context";
 
 const Employee = () => {
   const [pageSize] = useState(10);
+  const [modalShow, setModalShow] = useState(false);
   const [response, callback, isloading] = useFetch(
     getUsers("employees", 0, pageSize)
   );
@@ -16,9 +22,35 @@ const Employee = () => {
   const [rowCountState, setRowCountState] = useState(
     response?.payload?.rowCount || 0
   );
+  const appContext = useContext(AppContext);
 
-  const handleDelete = (id) => {
-    //setData(data.filter((item) => item.id !== id));
+  const handleApproval = (email, status) => {  
+    confirmAlert({
+      title: 'Confirmar',
+      message: 'Estas seguro de enviar el cambio?',
+      buttons: [
+        {
+          label: 'Si',
+          onClick: () => { callback(
+            setAgentStatus({ email: email, approved: status != "Approved" }, true),
+            (result) => {
+              if(!result.isSuccess)
+                  appContext.showAlert({ title: "Error", message: result.error.message, severity:"error" });
+              else
+                  appContext.showAlert({ title: "Success", message: result.message });
+      
+              callback(getUsers("agents", 0, pageSize), (result) => {
+                setData(result.data);
+                // setPage(newPage);
+              });
+            }
+          );}
+        },
+        {
+          label: 'No'
+        }
+      ]
+    });
   };
 
   const handlePageChange = (newPage) => {
@@ -55,10 +87,16 @@ const Employee = () => {
               <div className="neutralButton">Editar</div>
             </Link>
             <div
-              className="inactiveButton"
-              onClick={() => handleDelete(params.row.id)}
+              className={
+                params.row.statusName == "Approved"
+                  ? "inactiveButton"
+                  : "activeButton"
+              }
+              onClick={() =>
+                handleApproval(params.row.email, params.row.statusName)
+              }
             >
-              Borrar
+              {params.row.statusName == "Approved" ? "Inactivar" : "Activar"}
             </div>
           </div>
         );
@@ -79,9 +117,9 @@ const Employee = () => {
     <div className="datatable">
       <div className="datatableTitle">
         <div>Empleados</div>
-        <Link to="/users/new" className="link">
+        <Button onClick={() => setModalShow(true)} >
           <AddIcon />
-        </Link>
+        </Button>
       </div>
       <DataGrid
         className="datagrid"
@@ -95,6 +133,13 @@ const Employee = () => {
         onPageChange={handlePageChange}
         // checkboxSelection
         components={{ Toolbar: GridToolbar }}
+      />
+      <NewUserModal
+      title="Agregar Empleado"
+      show={modalShow}
+      inputs={userInputs}
+      onHide={() => setModalShow(false)}
+      onReload={() => handlePageChange(0)}
       />
     </div>
   );

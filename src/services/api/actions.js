@@ -71,6 +71,10 @@ export const getRevenuesByPeriod = (period = "Monthly", showGlobalLoading = fals
 export const login = (userInfo) => {
   return getPostApiOptions('account/authenticate', userInfo, actionKeys.AUTHENTICATE, true);
 }
+
+export const createUser = (userInfo) => {
+  return getPostApiOptions('account/create', userInfo, actionKeys.CREATE_USER, true);
+}
 export const setAgentStatus = (statusInfo, showGlobalLoading = false) => {
   return getPostApiOptions('account/status', statusInfo, actionKeys.SET_USER_STATUS, showGlobalLoading);
 }

@@ -8,7 +8,7 @@ import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import NotFound from "./pages/404/404";
 import { Alert, AlertTitle, Snackbar, Slide } from "@mui/material";
-import { userInputs, productInputs } from "./formSource";
+import { userInputs, productInputs } from "./services/metadata/form-source";
 import { useContext } from "react";
 import { DarkModeContext } from "./core/store/theme/darkMode-context";
 import AuthContext from "./core/store/auth-context";
