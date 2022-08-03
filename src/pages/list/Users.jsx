@@ -4,9 +4,9 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TabPanel from "../../components/tab/TabPanel";
 import { Person, PersonPinCircleOutlined } from "@mui/icons-material";
-import Employee from "../../UI/Users/Employee";
-import Agent from "../../UI/Users/Agent";
-import Customer from "../../UI/Users/Customer";
+import Employee from "../../UI/users/Employee";
+import Agent from "../../UI/users/Agent";
+import Customer from "../../UI/users/Customer";
 
 const a11yProps = (index) => {
   return {

@@ -6,7 +6,7 @@ import Transactions from "../../components/table/Transactions";
 import { getServices } from "../../services/api/actions";
 import Layout from "../../components/layout/Layout";
 import useFetch from "../../core/hooks/useFetch";
-import AgentDetail from "../../UI/Users/AgentDetail";
+import AgentDetail from "../../UI/users/AgentDetail";
 
 const Single = () => {
 

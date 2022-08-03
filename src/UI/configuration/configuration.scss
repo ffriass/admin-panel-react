@@ -1,0 +1,20 @@
+.centeredContainer{
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 50%;
+    display: flex;
+
+    .input{
+        width: 300px;
+    }
+    .suffix{
+        margin-left: 5px;
+        width: 100px;
+        font-weight: bold;
+    }
+
+    .item{
+        margin: 20px 20px 30px 0;
+        justify-content: end;
+    }
+}

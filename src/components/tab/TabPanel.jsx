@@ -4,6 +4,13 @@ import PropTypes from "prop-types";
 
 import Typography from "@mui/material/Typography";
 
+export const a11yProps = (index) => {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`
+  };
+};
+
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 

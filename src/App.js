@@ -18,6 +18,7 @@ import Users from "./pages/list/Users";
 import Products from "./pages/list/Products";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import Configuration from "./pages/configuration/Configuration";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -61,6 +62,7 @@ function App() {
                     }
                   />
                 </Route>
+                <Route path="settings" element={<Configuration />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             ) : (
