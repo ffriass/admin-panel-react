@@ -35,6 +35,7 @@ export const statusClassMapping = (status) => {
     case "Refunded":
     case "Inhabilitado":
     case "NotFound":
+    case "Draft":
       return "neutral";
 
     default:

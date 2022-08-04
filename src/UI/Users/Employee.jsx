@@ -39,7 +39,7 @@ const Employee = () => {
               else
                   appContext.showAlert({ title: "Success", message: result.message });
       
-              callback(getUsers("agents", 0, pageSize), (result) => {
+              callback(getUsers("employees", 0, pageSize), (result) => {
                 setData(result.data);
                 // setPage(newPage);
               });

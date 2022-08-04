@@ -45,14 +45,14 @@ const Products = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to={`/users/${params.row.id}`} className="link">
-              <div className="viewButton">View</div>
+            <Link to={`/products/${params.row.id}`} className="link">
+              <div className="viewButton">Ver</div>
             </Link>
             <div
               className="neutralButton"
               onClick={() => handleDelete(params.row.id)}
             >
-              Edit
+              Editar
             </div>
           </div>
         );

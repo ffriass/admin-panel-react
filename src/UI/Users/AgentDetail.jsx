@@ -8,7 +8,7 @@ import { FormControlLabel, Grid, Skeleton, Switch } from "@mui/material";
 import Balance from "../../components/table/Balance";
 import { useState } from "react";
 
-const AgentDetail = () => {
+const AgentDetail = (props) => {
   const { userId, email } = useParams();
   const [response, callback, isloading] = useFetch(getAgentAvailabilityById(userId));
   const [completed, setCompleted] = useState(true);
@@ -24,7 +24,8 @@ const AgentDetail = () => {
 
   return (
     <div className="singleContainer">
-      <div className="top">
+      <div className="pageTitle">Detalles del usuario</div>
+      <div className="top">        
         <div className="left">
           {!isloading ? <UserInfoCard user={response?.payload?.data} userType="agent" userId={userId}/>:
           <Skeleton variant="rectangular" height={80} /> }

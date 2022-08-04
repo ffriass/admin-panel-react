@@ -27,4 +27,7 @@ export const MainContainer = styled.div`
     width:100%;
     padding-left: 2%;
     padding-right: 2%;
+    width:100%;
+    display: flex;
+    justify-content: center;
 `;

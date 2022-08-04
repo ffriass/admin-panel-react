@@ -1,6 +1,17 @@
 .singleContainer {
   flex: 6;
 
+  .pageTitle{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    height: 30px;
+    font-weight: bold;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.189);
+    border-radius: 5px;
+  }
+
   .top {
     padding: 20px;
     display: flex;
